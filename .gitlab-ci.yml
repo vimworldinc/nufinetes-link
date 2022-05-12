@@ -21,9 +21,5 @@ build:
     changes:
       - package.json
 
-gosec-sast:
-  tags:
-    - $RUNNER_DOCKER
-  before_script:
-    - |
-      git config --global url."https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.com/".insteadOf https://gitlab.com/
+include:
+  - template: Security/SAST.gitlab-ci.yml
