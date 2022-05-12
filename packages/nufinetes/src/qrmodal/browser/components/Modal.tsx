@@ -40,13 +40,12 @@ function Modal(props: ModalProps) {
     uri: props.uri,
     qrcodeModalOptions: props.qrcodeModalOptions,
   }
-
+  console.log(mobile, 'check mobile')
   return (
     <div id={WALLETCONNECT_MODAL_ID} className="walletconnect-qrcode__base animated fadeIn">
       <div className="walletconnect-modal__base">
         <h5 className="walletconnect-modal__title">{props.text.connect_wallet}</h5>
-
-        <QRCodeDisplay {...displayProps} />
+        {!mobile && <QRCodeDisplay {...displayProps} />}
         <DesktopLink text={props.text} wcUri={props.uri} />
         <Footer onClose={props.onClose} />
       </div>
