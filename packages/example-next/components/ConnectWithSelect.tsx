@@ -1,7 +1,7 @@
 import type { CoinbaseWallet } from '@web3-react/coinbase-wallet'
 import type { Web3ReactHooks } from '@web3-react/core'
 import type { MetaMask } from '@web3-react/metamask'
-import {NufinetesConnector} from '@web3-react/nufinetes'
+import {NufinetesConnector} from 'nufinetes-link'
 import { Network } from '@web3-react/network'
 import { WalletConnect } from '@web3-react/walletconnect'
 import { useCallback, useState } from 'react'

@@ -1,5 +1,5 @@
 import { initializeConnector } from '@web3-react/core'
-import { NufinetesConnector } from '@web3-react/nufinetes'
+import { NufinetesConnector } from 'nufinetes-link'
 import { URLS } from '../chains'
 
 export const [nufinetes, hooks] = initializeConnector<NufinetesConnector>(
