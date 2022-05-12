@@ -6,7 +6,7 @@
   ],
   "author": "Spike Wang <spike.wang@vimworld.com>",
   "license": "GPL-3.0-or-later",
-  "repository": "github:NoahZinsmeister/web3-react",
+  "repository": "https://gitlab.com/vimworldinc/nufinetes/nufinetes-link",
   "publishConfig": {
     "access": "public"
   },
