@@ -1,0 +1,18 @@
+image: node:latest
+
+stages:
+  - build
+
+build:
+  stage: build
+#  when: manual
+  script:
+    - npm i
+    - npm run build
+    - npm publish
+    - echo "publish successfully"
+  only:
+    refs:
+      - main
+    changes:
+      - package.json
