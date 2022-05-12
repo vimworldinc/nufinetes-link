@@ -27,7 +27,7 @@ import { TextMap } from '../types'
 interface ModalProps {
   text: TextMap
   uri: string
-  onClose: any
+  onClose: () => void
   qrcodeModalOptions?: IQRCodeModalOptions
 }
 
@@ -40,7 +40,6 @@ function Modal(props: ModalProps) {
     uri: props.uri,
     qrcodeModalOptions: props.qrcodeModalOptions,
   }
-  console.log(mobile, 'check mobile')
   return (
     <div id={WALLETCONNECT_MODAL_ID} className="walletconnect-qrcode__base animated fadeIn">
       <div className="walletconnect-modal__base">

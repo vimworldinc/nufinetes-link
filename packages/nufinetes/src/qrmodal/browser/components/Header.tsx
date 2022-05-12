@@ -1,11 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as React from "preact/compat";
+import * as React from 'preact/compat'
 
-import { WALLETCONNECT_LOGO_SVG_URL } from "../assets/logo";
-import { WALLETCONNECT_HEADER_TEXT, WALLETCONNECT_CLOSE_BUTTON_ID } from "../constants";
+import { WALLETCONNECT_LOGO_SVG_URL } from '../assets/logo'
+import { WALLETCONNECT_HEADER_TEXT, WALLETCONNECT_CLOSE_BUTTON_ID } from '../constants'
 
 interface HeaderProps {
-  onClose: any;
+  onClose: () => void
 }
 
 function Header(props: HeaderProps) {
@@ -20,7 +20,7 @@ function Header(props: HeaderProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header
