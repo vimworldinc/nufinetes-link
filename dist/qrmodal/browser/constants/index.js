@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.WALLETCONNECT_NUFINETES_TEXT = exports.WALLETCONNECT_CONNECT_BUTTON_ID = exports.WALLETCONNECT_CTA_TEXT_ID = exports.WALLETCONNECT_CLOSE_BUTTON_ID = exports.WALLETCONNECT_MODAL_ID = exports.WALLETCONNECT_STYLE_ID = exports.WALLETCONNECT_WRAPPER_ID = exports.DEFAULT_BUTTON_COLOR = exports.ANIMATION_DURATION = exports.WALLETCONNECT_FOOTER_TEXT = exports.WALLETCONNECT_HEADER_TEXT = void 0;
 exports.WALLETCONNECT_HEADER_TEXT = 'WalletConnect';
 exports.WALLETCONNECT_FOOTER_TEXT = 'Go back';

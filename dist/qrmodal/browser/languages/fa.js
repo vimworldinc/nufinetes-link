@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-var fa = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const fa = {
     connect_wallet: 'Connect to a Wallet',
     nufinetes_wallet: 'Nufinetes Wallet App',
     no_nufinetes: 'Don’t have Nufinetes yet? Download here',
@@ -17,6 +17,6 @@ var fa = {
     loading: "...بارگذاری",
     something_went_wrong: "مشکلی پیش آمد",
     no_supported_wallets: "هنوز هیچ کیف پول پشتیبانی شده ای وجود ندارد",
-    no_wallets_found: "هیچ کیف پولی پیدا نشد"
+    no_wallets_found: "هیچ کیف پولی پیدا نشد",
 };
-exports["default"] = fa;
+exports.default = fa;

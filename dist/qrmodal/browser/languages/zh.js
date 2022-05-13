@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-var zh = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const zh = {
     connect_wallet: '连接钱包',
     nufinetes_wallet: 'Nufinetes 钱包',
     no_nufinetes: '还没有 Nufinetes 吗？在这里下载',
@@ -17,6 +17,6 @@ var zh = {
     loading: '正在加载...',
     something_went_wrong: '出了问题',
     no_supported_wallets: '目前还没有支持的钱包',
-    no_wallets_found: '没有找到钱包'
+    no_wallets_found: '没有找到钱包',
 };
-exports["default"] = zh;
+exports.default = zh;

@@ -3,6 +3,7 @@ import type WalletConnectProvider from '@walletconnect/ethereum-provider';
 import type { IWCEthRpcConnectionOptions } from '@walletconnect/types';
 import type { Actions, AddEthereumChainParameter } from '@web3-react/types';
 import { Connector } from '@web3-react/types';
+import EventEmitter3 from 'eventemitter3';
 import type { EventEmitter } from 'node:events';
 export declare const URI_AVAILABLE = "URI_AVAILABLE";
 declare type MockWalletConnectProvider = WalletConnectProvider & EventEmitter & {
@@ -18,7 +19,7 @@ declare type WalletConnectOptions = Omit<IWCEthRpcConnectionOptions, 'rpc' | 'in
 export declare class NufinetesConnector extends Connector {
     /** {@inheritdoc Connector.provider} */
     provider: MockWalletConnectProvider | undefined;
-    readonly events: any;
+    readonly events: EventEmitter3<string | symbol, any>;
     private readonly options;
     private readonly rpc;
     private eagerConnection?;

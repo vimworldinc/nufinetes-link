@@ -1,4 +1,954 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.WALLETCONNECT_STYLE_SHEET = void 0;
-exports.WALLETCONNECT_STYLE_SHEET = ":root {\n  --animation-duration: 300ms;\n}\n\n/* cyrillic-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 300;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUbOvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,\n    U+FE2E-FE2F;\n}\n/* cyrillic */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 300;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUZevIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n/* vietnamese */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 300;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUbuvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,\n    U+01AF-01B0, U+1EA0-1EF9, U+20AB;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 300;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUb-vIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,\n    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 300;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUYevIWzgPDA.woff2)\n    format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,\n    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,\n    U+FEFF, U+FFFD;\n}\n/* cyrillic-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofIOOaBTMnFcQIG.woff2)\n    format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,\n    U+FE2E-FE2F;\n}\n/* cyrillic */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofIMeaBTMnFcQIG.woff2)\n    format('woff2');\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n/* vietnamese */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofIOuaBTMnFcQIG.woff2)\n    format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,\n    U+01AF-01B0, U+1EA0-1EF9, U+20AB;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofIO-aBTMnFcQIG.woff2)\n    format('woff2');\n  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,\n    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofINeaBTMnFcQ.woff2)\n    format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,\n    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,\n    U+FEFF, U+FFFD;\n}\n/* cyrillic-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 600;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUbOvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,\n    U+FE2E-FE2F;\n}\n/* cyrillic */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 600;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUZevIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n/* vietnamese */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 600;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUbuvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,\n    U+01AF-01B0, U+1EA0-1EF9, U+20AB;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 600;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUb-vIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,\n    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 600;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUYevIWzgPDA.woff2)\n    format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,\n    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,\n    U+FEFF, U+FFFD;\n}\n/* cyrillic-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUbOvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,\n    U+FE2E-FE2F;\n}\n/* cyrillic */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUZevIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n/* vietnamese */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUbuvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,\n    U+01AF-01B0, U+1EA0-1EF9, U+20AB;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUb-vIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,\n    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUYevIWzgPDA.woff2)\n    format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,\n    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,\n    U+FEFF, U+FFFD;\n}\n/* cyrillic-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 800;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUbOvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,\n    U+FE2E-FE2F;\n}\n/* cyrillic */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 800;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUZevIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n/* vietnamese */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 800;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUbuvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,\n    U+01AF-01B0, U+1EA0-1EF9, U+20AB;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 800;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUb-vIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,\n    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 800;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUYevIWzgPDA.woff2)\n    format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,\n    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,\n    U+FEFF, U+FFFD;\n}\n/* cyrillic-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 900;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUbOvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,\n    U+FE2E-FE2F;\n}\n/* cyrillic */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 900;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUZevIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n/* vietnamese */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 900;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUbuvIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,\n    U+01AF-01B0, U+1EA0-1EF9, U+20AB;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 900;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUb-vIWzgPDEtj.woff2)\n    format('woff2');\n  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,\n    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Nunito';\n  font-style: normal;\n  font-weight: 900;\n  font-display: swap;\n  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUYevIWzgPDA.woff2)\n    format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,\n    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,\n    U+FEFF, U+FFFD;\n}\n\nbody {\n  font-family: Nunito, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}\n\n@keyframes fadeOut {\n  from {\n    opacity: 1;\n  }\n  to {\n    opacity: 0;\n  }\n}\n\n.animated {\n  animation-duration: var(--animation-duration);\n  animation-fill-mode: both;\n}\n\n.fadeIn {\n  animation-name: fadeIn;\n}\n\n.fadeOut {\n  animation-name: fadeOut;\n}\n\n#walletconnect-wrapper {\n  -webkit-user-select: none;\n  align-items: center;\n  display: flex;\n  height: 100%;\n  justify-content: center;\n  left: 0;\n  pointer-events: none;\n  position: fixed;\n  top: 0;\n  user-select: none;\n  width: 100%;\n  z-index: 99999999999999;\n}\n\n.walletconnect-modal__headerLogo {\n  height: 21px;\n}\n\n.walletconnect-modal__title {\n  font-size: 24px;\n  font-family: Nunito, sans-serif;\n  font-weight: bold;\n  line-height: 1.334;\n  color: #fff;\n  margin: 0;\n}\n\n.walletconnect-modal__header p {\n  color: #ffffff;\n  font-size: 20px;\n  font-weight: 600;\n  margin: 0;\n  align-items: flex-start;\n  display: flex;\n  flex: 1;\n  margin-left: 5px;\n}\n\n.walletconnect-modal__backButtonArrow {\n  width: 20px;\n  margin-right: 8px;\n}\n\n.walletconnect-modal__close__wrapper {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  z-index: 10000;\n  background: white;\n  border-radius: 26px;\n  padding: 6px;\n  box-sizing: border-box;\n  width: 26px;\n  height: 26px;\n  cursor: pointer;\n}\n\n.walletconnect-modal__close__icon {\n  position: relative;\n  top: 7px;\n  right: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transform: rotate(45deg);\n}\n\n.walletconnect-modal__close__line1 {\n  position: absolute;\n  width: 100%;\n  border: 1px solid rgb(48, 52, 59);\n}\n\n.walletconnect-modal__close__line2 {\n  position: absolute;\n  width: 100%;\n  border: 1px solid rgb(48, 52, 59);\n  transform: rotate(90deg);\n}\n\n.walletconnect-qrcode__base {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  background-color: rgba(25, 4, 45, 0.8);\n  height: 100%;\n  left: 0;\n  pointer-events: auto;\n  position: fixed;\n  top: 0;\n  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);\n  width: 100%;\n  will-change: opacity;\n  padding: 40px;\n  box-sizing: border-box;\n}\n\n.walletconnect-qrcode__text {\n  font-size: 14px;\n  font-family: Nunito, sans-serif;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #fff;\n  line-height: 1.1875em;\n  margin: 0;\n  text-align: center;\n  width: 100%;\n}\n\n@media only screen and (max-width: 768px) {\n  .walletconnect-qrcode__text {\n    font-size: 4vw;\n  }\n}\n\n@media only screen and (max-width: 320px) {\n  .walletconnect-qrcode__text {\n    font-size: 14px;\n  }\n}\n\n.walletconnect-qrcode__displayWrap {\n  width: 170px;\n  height: 170px;\n  display: flex;\n  transform: translateZ(0);\n  margin-top: 20px;\n  transition: all 0.2s;\n  align-items: center;\n  border-radius: 12px;\n  margin-bottom: 10px;\n  justify-content: center;\n  background: #fff;\n}\n\n.walletconnect-qrcode__image {\n  width: calc(100% - 30px);\n  box-sizing: border-box;\n  cursor: none;\n  margin: 0 auto;\n}\n\n.walletconnect-qrcode__notification {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  font-size: 16px;\n  padding: 16px 20px;\n  border-radius: 16px;\n  text-align: center;\n  transition: all 0.1s ease-in-out;\n  background: white;\n  color: black;\n  margin-bottom: -60px;\n  opacity: 0;\n}\n\n.walletconnect-qrcode__notification.notification__show {\n  opacity: 1;\n}\n\n@media only screen and (max-width: 768px) {\n  .walletconnect-modal__header {\n    height: 130px;\n  }\n  .walletconnect-modal__base {\n    overflow: auto;\n  }\n}\n\n@media only screen and (min-device-width: 415px) and (max-width: 768px) {\n  #content {\n    max-width: 768px;\n    box-sizing: border-box;\n  }\n}\n\n@media only screen and (min-width: 375px) and (max-width: 415px) {\n  #content {\n    max-width: 414px;\n    box-sizing: border-box;\n  }\n}\n\n@media only screen and (min-width: 320px) and (max-width: 375px) {\n  #content {\n    max-width: 375px;\n    box-sizing: border-box;\n  }\n}\n\n@media only screen and (max-width: 320px) {\n  #content {\n    max-width: 320px;\n    box-sizing: border-box;\n  }\n}\n\n.walletconnect-modal__base {\n  -webkit-font-smoothing: antialiased;\n  font-family: ui-rounded, \"SF Pro Rounded\", \"SF Pro Text\", medium-content-sans-serif-font,\n    -apple-system, BlinkMacSystemFont, ui-sans-serif, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell,\n    \"Open Sans\", \"Helvetica Neue\", sans-serif;\n  margin-top: 41px;\n  pointer-events: auto;\n  position: relative;\n  text-align: center;\n  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);\n  will-change: transform;\n  overflow: visible;\n  transform: translateY(-50%);\n  top: 50%;\n  margin: auto;\n\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  padding: 22px;\n  border: 1px solid #9EA5D1;\n  width: 385px;\n  box-sizing: border-box;\n  border-radius: 16px;\n  background-color: #19042d;\n  box-shadow: 0px 4px 20px rgb(25 4 45 / 40%);\n}\n\n@media only screen and (max-width: 320px) {\n  .walletconnect-modal__base {\n    padding: 24px 12px;\n  }\n}\n\n.walletconnect-modal__base .hidden {\n  transform: translateY(150%);\n  transition: 0.125s cubic-bezier(0.4, 0, 1, 1);\n}\n\n.walletconnect-modal__header {\n  align-items: center;\n  display: flex;\n  height: 26px;\n  left: 0;\n  justify-content: space-between;\n  position: absolute;\n  top: -42px;\n  width: 100%;\n}\n\n.walletconnect-modal__backButton {\n  align-items: center;\n  display: flex;\n  height: 60px;\n  left: 0;\n  right: 0;\n  justify-content: center;\n  position: absolute;\n  bottom: -82px;\n  width: 100%;\n  color: #fff;\n  width: 161px;\n  box-sizing: border-box;\n  margin: auto;\n  margin-top: 20px;\n  border: solid 1px #fff;\n  border-radius: 10px;\n  cursor: pointer;\n  font-family: Nunito, sans-serif;\n  font-weight: bold;\n}\n\n.walletconnect-modal__base .wc-logo {\n  align-items: center;\n  display: flex;\n  height: 26px;\n  margin-top: 15px;\n  padding-bottom: 15px;\n  pointer-events: auto;\n}\n\n.walletconnect-modal__base .wc-logo div {\n  background-color: #3399ff;\n  height: 21px;\n  margin-right: 5px;\n  mask-image: url(\"images/wc-logo.svg\") center no-repeat;\n  width: 32px;\n}\n\n.walletconnect-modal__base .wc-logo p {\n  color: #ffffff;\n  font-size: 20px;\n  font-weight: 600;\n  margin: 0;\n}\n\n.walletconnect-modal__base h2 {\n  color: rgba(60, 66, 82, 0.6);\n  font-size: 16px;\n  font-weight: 600;\n  letter-spacing: 0;\n  line-height: 1.1875em;\n  margin: 0 0 19px 0;\n  text-align: center;\n  width: 100%;\n}\n\n.walletconnect-modal__base__row {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  align-items: center;\n  border-radius: 20px;\n  cursor: pointer;\n  display: flex;\n  height: 56px;\n  justify-content: space-between;\n  padding: 0 15px;\n  position: relative;\n  margin: 0px 0px 8px;\n  text-align: left;\n  transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);\n  will-change: transform;\n  text-decoration: none;\n}\n\n.walletconnect-modal__base__row:hover {\n  background: rgba(60, 66, 82, 0.06);\n}\n\n.walletconnect-modal__base__row:active {\n  background: rgba(60, 66, 82, 0.06);\n  transform: scale(0.975);\n  transition: 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);\n}\n\n.walletconnect-modal__base__row__h3 {\n  color: #25292e;\n  font-size: 20px;\n  font-weight: 700;\n  margin: 0;\n  padding-bottom: 3px;\n}\n\n.walletconnect-modal__base__row__right {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n}\n\n.walletconnect-modal__base__row__right__app-icon {\n  border-radius: 8px;\n  height: 34px;\n  margin: 0 11px 2px 0;\n  width: 34px;\n  background-size: 100%;\n  box-shadow: 0 4px 12px 0 rgba(37, 41, 46, 0.25);\n}\n\n.walletconnect-modal__base__row__right__caret {\n  height: 18px;\n  opacity: 0.3;\n  transition: 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);\n  width: 8px;\n  will-change: opacity;\n}\n\n.walletconnect-modal__base__row:hover .caret,\n.walletconnect-modal__base__row:active .caret {\n  opacity: 0.6;\n}\n\n.walletconnect-modal__mobile__toggle {\n  width: 80%;\n  display: flex;\n  margin: 0 auto;\n  position: relative;\n  overflow: hidden;\n  border-radius: 8px;\n  margin-bottom: 18px;\n  background: #d4d5d9;\n}\n\n.walletconnect-modal__single_wallet {\n  display: flex;\n  justify-content: center;\n  margin-top: 7px;\n  margin-bottom: 18px;\n}\n\n.walletconnect-modal__single_wallet a {\n  cursor: pointer;\n  color: rgb(64, 153, 255);\n  font-size: 21px;\n  font-weight: 800;\n  text-decoration: none !important;\n  margin: 0 auto;\n}\n\n.walletconnect-modal__mobile__toggle_selector {\n  width: calc(50% - 8px);\n  background: white;\n  position: absolute;\n  border-radius: 5px;\n  height: calc(100% - 8px);\n  top: 4px;\n  transition: all 0.2s ease-in-out;\n  transform: translate3d(4px, 0, 0);\n}\n\n.walletconnect-modal__mobile__toggle.right__selected .walletconnect-modal__mobile__toggle_selector {\n  transform: translate3d(calc(100% + 12px), 0, 0);\n}\n\n.walletconnect-modal__mobile__toggle a {\n  font-size: 12px;\n  width: 50%;\n  text-align: center;\n  padding: 8px;\n  margin: 0;\n  font-weight: 600;\n  z-index: 1;\n}\n\n.walletconnect-modal__footer {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n@media only screen and (max-width: 768px) {\n  .walletconnect-modal__footer {\n    margin-top: 5vw;\n  }\n}\n\n.walletconnect-modal__footer a {\n  cursor: pointer;\n  color: #898d97;\n  font-size: 15px;\n  margin: 0 auto;\n}\n\n@media only screen and (max-width: 320px) {\n  .walletconnect-modal__footer a {\n    font-size: 14px;\n  }\n}\n\n.walletconnect-connect__buttons__wrapper {\n  max-height: 44vh;\n}\n\n.walletconnect-connect__buttons__wrapper__android {\n  margin: 50% 0;\n}\n\n.walletconnect-connect__buttons__wrapper__wrap {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  margin: 10px 0;\n}\n\n@media only screen and (min-width: 768px) {\n  .walletconnect-connect__buttons__wrapper__wrap {\n    margin-top: 40px;\n  }\n}\n\n.walletconnect-connect__button {\n  background-color: rgb(64, 153, 255);\n  padding: 12px;\n  border-radius: 8px;\n  text-decoration: none;\n  color: rgb(255, 255, 255);\n  font-weight: 500;\n}\n\n.walletconnect-connect__button__icon_anchor {\n  cursor: pointer;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin: 8px;\n  width: 42px;\n  justify-self: center;\n  flex-direction: column;\n  text-decoration: none !important;\n}\n\n@media only screen and (max-width: 320px) {\n  .walletconnect-connect__button__icon_anchor {\n    margin: 4px;\n  }\n}\n\n.walletconnect-connect__button__icon {\n  border-radius: 10px;\n  height: 42px;\n  margin: 0;\n  width: 42px;\n  background-size: cover !important;\n  box-shadow: 0 4px 12px 0 rgba(37, 41, 46, 0.25);\n}\n\n.walletconnect-connect__button__text {\n  color: #424952;\n  font-size: 2.7vw;\n  text-decoration: none !important;\n  padding: 0;\n  margin-top: 1.8vw;\n  font-weight: 600;\n}\n\n@media only screen and (min-width: 768px) {\n  .walletconnect-connect__button__text {\n    font-size: 16px;\n    margin-top: 12px;\n  }\n}\n\n.walletconnect-search__input {\n  border: none;\n  background: #d4d5d9;\n  border-style: none;\n  padding: 8px 16px;\n  outline: none;\n  font-style: normal;\n  font-stretch: normal;\n  font-size: 16px;\n  font-style: normal;\n  font-stretch: normal;\n  line-height: normal;\n  letter-spacing: normal;\n  text-align: left;\n  border-radius: 8px;\n  width: calc(100% - 16px);\n  margin: 0;\n  margin-bottom: 8px;\n}\n\n.walletconnect-modal__desktopLink {\n  color: #fff;\n  width: 302px;\n  height: 68px;\n  padding: 9px 23px 9px 9px;\n  box-sizing: border-box;\n  margin-top: 20px;\n  border: 1px solid rgba(255, 255, 255, 0.6) !important;\n  border-radius: 16px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  cursor: pointer;\n}\n.walletconnect-modal__desktopLinkInner {\n  display: flex;\n  align-items: flex-end;\n  justify-content: center;\n}\n.walletconnect-modal__desktopLinkInner p {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 400;\n}\n\n.walletconnect-modal__desktopLink > svg {\n  width: 20px;\n}\n\n.walletconnect-modal__nufinetesLogo {\n  width: 38px;\n  height: 38px;\n  margin-right: 10px;\n}\n\n.walletconnect-modal_appLink {\n  color: #30EDB8;\n  font-size: 16px;\n  margin-top: 20px;\n  text-decoration: underline;\n}\n";
+exports.WALLETCONNECT_STYLE_SHEET = `:root {
+  --animation-duration: 300ms;
+}
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUbOvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUZevIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUbuvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUb-vIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAnsSUYevIWzgPDA.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofIOOaBTMnFcQIG.woff2)
+    format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofIMeaBTMnFcQIG.woff2)
+    format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofIOuaBTMnFcQIG.woff2)
+    format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofIO-aBTMnFcQIG.woff2)
+    format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXV3I6Li01BKofINeaBTMnFcQ.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUbOvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUZevIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUbuvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUb-vIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofA6sKUYevIWzgPDA.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUbOvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUZevIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUbuvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUb-vIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAjsOUYevIWzgPDA.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUbOvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUZevIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUbuvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUb-vIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAksCUYevIWzgPDA.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUbOvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUZevIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUbuvIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUb-vIWzgPDEtj.woff2)
+    format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://d3va9f6jgm4z2y.cloudfront.net/font/XRXW3I6Li01BKofAtsGUYevIWzgPDA.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+body {
+  font-family: Nunito, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animated {
+  animation-duration: var(--animation-duration);
+  animation-fill-mode: both;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+}
+
+#walletconnect-wrapper {
+  -webkit-user-select: none;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  user-select: none;
+  width: 100%;
+  z-index: 99999999999999;
+}
+
+.walletconnect-modal__headerLogo {
+  height: 21px;
+}
+
+.walletconnect-modal__title {
+  font-size: 24px;
+  font-family: Nunito, sans-serif;
+  font-weight: bold;
+  line-height: 1.334;
+  color: #fff;
+  margin: 0;
+}
+
+.walletconnect-modal__header p {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  margin-left: 5px;
+}
+
+.walletconnect-modal__backButtonArrow {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.walletconnect-modal__close__wrapper {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 10000;
+  background: white;
+  border-radius: 26px;
+  padding: 6px;
+  box-sizing: border-box;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.walletconnect-modal__close__icon {
+  position: relative;
+  top: 7px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+
+.walletconnect-modal__close__line1 {
+  position: absolute;
+  width: 100%;
+  border: 1px solid rgb(48, 52, 59);
+}
+
+.walletconnect-modal__close__line2 {
+  position: absolute;
+  width: 100%;
+  border: 1px solid rgb(48, 52, 59);
+  transform: rotate(90deg);
+}
+
+.walletconnect-qrcode__base {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background-color: rgba(25, 4, 45, 0.8);
+  height: 100%;
+  left: 0;
+  pointer-events: auto;
+  position: fixed;
+  top: 0;
+  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  width: 100%;
+  will-change: opacity;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.walletconnect-qrcode__text {
+  font-size: 14px;
+  font-family: Nunito, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  line-height: 1.1875em;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .walletconnect-qrcode__text {
+    font-size: 4vw;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .walletconnect-qrcode__text {
+    font-size: 14px;
+  }
+}
+
+.walletconnect-qrcode__displayWrap {
+  width: 170px;
+  height: 170px;
+  display: flex;
+  transform: translateZ(0);
+  margin-top: 20px;
+  transition: all 0.2s;
+  align-items: center;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  justify-content: center;
+  background: #fff;
+}
+
+.walletconnect-qrcode__image {
+  width: calc(100% - 30px);
+  box-sizing: border-box;
+  cursor: none;
+  margin: 0 auto;
+}
+
+.walletconnect-qrcode__notification {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 16px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.1s ease-in-out;
+  background: white;
+  color: black;
+  margin-bottom: -60px;
+  opacity: 0;
+}
+
+.walletconnect-qrcode__notification.notification__show {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 768px) {
+  .walletconnect-modal__header {
+    height: 130px;
+  }
+  .walletconnect-modal__base {
+    overflow: auto;
+  }
+}
+
+@media only screen and (min-device-width: 415px) and (max-width: 768px) {
+  #content {
+    max-width: 768px;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 415px) {
+  #content {
+    max-width: 414px;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+  #content {
+    max-width: 375px;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #content {
+    max-width: 320px;
+    box-sizing: border-box;
+  }
+}
+
+.walletconnect-modal__base {
+  -webkit-font-smoothing: antialiased;
+  font-family: ui-rounded, "SF Pro Rounded", "SF Pro Text", medium-content-sans-serif-font,
+    -apple-system, BlinkMacSystemFont, ui-sans-serif, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
+  margin-top: 41px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform;
+  overflow: visible;
+  transform: translateY(-50%);
+  top: 50%;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 22px;
+  border: 1px solid #9EA5D1;
+  width: 385px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background-color: #19042d;
+  box-shadow: 0px 4px 20px rgb(25 4 45 / 40%);
+}
+
+@media only screen and (max-width: 320px) {
+  .walletconnect-modal__base {
+    padding: 24px 12px;
+  }
+}
+
+.walletconnect-modal__base .hidden {
+  transform: translateY(150%);
+  transition: 0.125s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.walletconnect-modal__header {
+  align-items: center;
+  display: flex;
+  height: 26px;
+  left: 0;
+  justify-content: space-between;
+  position: absolute;
+  top: -42px;
+  width: 100%;
+}
+
+.walletconnect-modal__backButton {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  position: absolute;
+  bottom: -82px;
+  width: 100%;
+  color: #fff;
+  width: 161px;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 20px;
+  border: solid 1px #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: Nunito, sans-serif;
+  font-weight: bold;
+}
+
+.walletconnect-modal__base .wc-logo {
+  align-items: center;
+  display: flex;
+  height: 26px;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  pointer-events: auto;
+}
+
+.walletconnect-modal__base .wc-logo div {
+  background-color: #3399ff;
+  height: 21px;
+  margin-right: 5px;
+  mask-image: url("images/wc-logo.svg") center no-repeat;
+  width: 32px;
+}
+
+.walletconnect-modal__base .wc-logo p {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.walletconnect-modal__base h2 {
+  color: rgba(60, 66, 82, 0.6);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.1875em;
+  margin: 0 0 19px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.walletconnect-modal__base__row {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  align-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  height: 56px;
+  justify-content: space-between;
+  padding: 0 15px;
+  position: relative;
+  margin: 0px 0px 8px;
+  text-align: left;
+  transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  text-decoration: none;
+}
+
+.walletconnect-modal__base__row:hover {
+  background: rgba(60, 66, 82, 0.06);
+}
+
+.walletconnect-modal__base__row:active {
+  background: rgba(60, 66, 82, 0.06);
+  transform: scale(0.975);
+  transition: 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.walletconnect-modal__base__row__h3 {
+  color: #25292e;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding-bottom: 3px;
+}
+
+.walletconnect-modal__base__row__right {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.walletconnect-modal__base__row__right__app-icon {
+  border-radius: 8px;
+  height: 34px;
+  margin: 0 11px 2px 0;
+  width: 34px;
+  background-size: 100%;
+  box-shadow: 0 4px 12px 0 rgba(37, 41, 46, 0.25);
+}
+
+.walletconnect-modal__base__row__right__caret {
+  height: 18px;
+  opacity: 0.3;
+  transition: 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 8px;
+  will-change: opacity;
+}
+
+.walletconnect-modal__base__row:hover .caret,
+.walletconnect-modal__base__row:active .caret {
+  opacity: 0.6;
+}
+
+.walletconnect-modal__mobile__toggle {
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  background: #d4d5d9;
+}
+
+.walletconnect-modal__single_wallet {
+  display: flex;
+  justify-content: center;
+  margin-top: 7px;
+  margin-bottom: 18px;
+}
+
+.walletconnect-modal__single_wallet a {
+  cursor: pointer;
+  color: rgb(64, 153, 255);
+  font-size: 21px;
+  font-weight: 800;
+  text-decoration: none !important;
+  margin: 0 auto;
+}
+
+.walletconnect-modal__mobile__toggle_selector {
+  width: calc(50% - 8px);
+  background: white;
+  position: absolute;
+  border-radius: 5px;
+  height: calc(100% - 8px);
+  top: 4px;
+  transition: all 0.2s ease-in-out;
+  transform: translate3d(4px, 0, 0);
+}
+
+.walletconnect-modal__mobile__toggle.right__selected .walletconnect-modal__mobile__toggle_selector {
+  transform: translate3d(calc(100% + 12px), 0, 0);
+}
+
+.walletconnect-modal__mobile__toggle a {
+  font-size: 12px;
+  width: 50%;
+  text-align: center;
+  padding: 8px;
+  margin: 0;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.walletconnect-modal__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .walletconnect-modal__footer {
+    margin-top: 5vw;
+  }
+}
+
+.walletconnect-modal__footer a {
+  cursor: pointer;
+  color: #898d97;
+  font-size: 15px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 320px) {
+  .walletconnect-modal__footer a {
+    font-size: 14px;
+  }
+}
+
+.walletconnect-connect__buttons__wrapper {
+  max-height: 44vh;
+}
+
+.walletconnect-connect__buttons__wrapper__android {
+  margin: 50% 0;
+}
+
+.walletconnect-connect__buttons__wrapper__wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 10px 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .walletconnect-connect__buttons__wrapper__wrap {
+    margin-top: 40px;
+  }
+}
+
+.walletconnect-connect__button {
+  background-color: rgb(64, 153, 255);
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+}
+
+.walletconnect-connect__button__icon_anchor {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 8px;
+  width: 42px;
+  justify-self: center;
+  flex-direction: column;
+  text-decoration: none !important;
+}
+
+@media only screen and (max-width: 320px) {
+  .walletconnect-connect__button__icon_anchor {
+    margin: 4px;
+  }
+}
+
+.walletconnect-connect__button__icon {
+  border-radius: 10px;
+  height: 42px;
+  margin: 0;
+  width: 42px;
+  background-size: cover !important;
+  box-shadow: 0 4px 12px 0 rgba(37, 41, 46, 0.25);
+}
+
+.walletconnect-connect__button__text {
+  color: #424952;
+  font-size: 2.7vw;
+  text-decoration: none !important;
+  padding: 0;
+  margin-top: 1.8vw;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 768px) {
+  .walletconnect-connect__button__text {
+    font-size: 16px;
+    margin-top: 12px;
+  }
+}
+
+.walletconnect-search__input {
+  border: none;
+  background: #d4d5d9;
+  border-style: none;
+  padding: 8px 16px;
+  outline: none;
+  font-style: normal;
+  font-stretch: normal;
+  font-size: 16px;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  border-radius: 8px;
+  width: calc(100% - 16px);
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.walletconnect-modal__desktopLink {
+  color: #fff;
+  width: 302px;
+  height: 68px;
+  padding: 9px 23px 9px 9px;
+  box-sizing: border-box;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.walletconnect-modal__desktopLinkInner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.walletconnect-modal__desktopLinkInner p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.walletconnect-modal__desktopLink > svg {
+  width: 20px;
+}
+
+.walletconnect-modal__nufinetesLogo {
+  width: 38px;
+  height: 38px;
+  margin-right: 10px;
+}
+
+.walletconnect-modal_appLink {
+  color: #30EDB8;
+  font-size: 16px;
+  margin-top: 20px;
+  text-decoration: underline;
+}
+`;

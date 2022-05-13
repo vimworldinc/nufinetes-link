@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-var fr = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const fr = {
     connect_wallet: 'Connect to a Wallet',
     nufinetes_wallet: 'Nufinetes Wallet App',
     no_nufinetes: 'Don’t have Nufinetes yet? Download here',
@@ -17,6 +17,6 @@ var fr = {
     loading: "Chargement...",
     something_went_wrong: "Quelque chose a mal tourné",
     no_supported_wallets: "Il n'y a pas encore de portefeuilles pris en charge",
-    no_wallets_found: "Aucun portefeuille trouvé"
+    no_wallets_found: "Aucun portefeuille trouvé",
 };
-exports["default"] = fr;
+exports.default = fr;

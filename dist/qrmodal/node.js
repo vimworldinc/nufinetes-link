@@ -1,10 +1,13 @@
 "use strict";
-exports.__esModule = true;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.close = exports.open = void 0;
-var qrcode_1 = require("qrcode");
+const qrcode_1 = __importDefault(require("qrcode"));
 function open(uri) {
     // eslint-disable-next-line no-console
-    qrcode_1["default"].toString(uri, { type: "terminal" }).then(console.log);
+    qrcode_1.default.toString(uri, { type: "terminal" }).then(console.log);
 }
 exports.open = open;
 function close() {
