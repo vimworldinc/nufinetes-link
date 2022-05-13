@@ -9,12 +9,11 @@ build:
   stage: build
 #  when: manual
   script:
-    - cd packages/nufinetes
-    - npm i
-    - npm run build
+    - yarn
+    - yarn run build
     - echo "@vimworldinc:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/">.npmrc
     - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">>.npmrc
-    - npm publish
+    - yarn publish
     - echo "publish successfully"
   only:
     refs:
