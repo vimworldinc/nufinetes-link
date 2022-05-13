@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "nufinetes-link",
+  "name": "@vimworldinc/nufinetes-link",
   "engines": {
     "node": "^14 || ^16"
   },

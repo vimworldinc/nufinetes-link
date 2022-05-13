@@ -20,7 +20,7 @@
     "@web3-react/types": "8.0.13-beta.0",
     "@web3-react/url": "8.0.18-beta.0",
     "@web3-react/walletconnect": "8.0.27-beta.0",
-    "nufinetes-link": "0.0.3",
+    "@vimworldinc/nufinetes-link": "0.0.3",
     "next": "^12.1.5",
     "react-dom": "^18.0.0",
     "qrcode.react": "^1.0.0"
