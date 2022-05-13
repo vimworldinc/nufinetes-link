@@ -1,0 +1,3 @@
+import { IQRCodeModalOptions } from '@walletconnect/legacy-types';
+export declare function open(uri: string, cb: any, qrcodeModalOptions?: IQRCodeModalOptions): void;
+export declare function close(): void;

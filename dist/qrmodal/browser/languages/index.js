@@ -1,0 +1,12 @@
+"use strict";
+exports.__esModule = true;
+var de_1 = require("./de");
+var en_1 = require("./en");
+var es_1 = require("./es");
+var fr_1 = require("./fr");
+var ko_1 = require("./ko");
+var pt_1 = require("./pt");
+var zh_1 = require("./zh");
+var fa_1 = require("./fa");
+var languages = { de: de_1["default"], en: en_1["default"], es: es_1["default"], fr: fr_1["default"], ko: ko_1["default"], pt: pt_1["default"], zh: zh_1["default"], fa: fa_1["default"] };
+exports["default"] = languages;
