@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from 'react'
 import { useWeb3React, Web3ReactHooks, Web3ReactProvider } from '@web3-react/core'
 
 import { MetaMask } from '@web3-react/metamask'
-import { NufinetesConnector } from 'nufinetes-link'
+import { NufinetesConnector } from '@vimworldinc/nufinetes-link'
 import type { Connector } from '@web3-react/types'
 import { WalletConnect } from '@web3-react/walletconnect'
 

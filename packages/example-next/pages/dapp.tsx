@@ -4,7 +4,7 @@ import { AccountProvider } from '../components/AccountProvider'
 import Dapp from '../components/Dapp'
 
 import { MetaMask } from '@web3-react/metamask'
-import { NufinetesConnector } from 'nufinetes-link'
+import { NufinetesConnector } from '@vimworldinc/nufinetes-link'
 import type { Connector } from '@web3-react/types'
 import { WalletConnect } from '@web3-react/walletconnect'
 // import { hooks as metaMaskHooks, metaMask } from '../connectors/metaMask'
