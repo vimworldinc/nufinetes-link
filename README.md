@@ -1,92 +1,254 @@
-# Nufinetes Link
+# Nufinetes-Link
 
-Dapp SDK for Nufinetes
+A [web3-react](https://github.com/NoahZinsmeister/web3-react/) standard connector for Vimworld Dapps
 
-## Getting started
+## Introduction
+Nufinetes-Link is an connector for connecting Vimworld dapps with a simple customizable configuration.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+It runs on web3-react/core library, and provides a completely and useful status of the Wallet Connect connection used by our dapps.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+The chains currently supported are **Ve Chain Mainnet and Testnet**, and chains that will be supported in the future will be **BNB Chain , 1AE Chain  and every other EVM compatible chain.**
 
-## Add your files
+## Preview
+You can test this library on: xxxxxxxxxxxxxxxxx
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Installation (private library)
+1. Install Web3-React core library
 
+```bash
+yarn add @web3-react/core@8.0.25-beta.0
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/vimworldinc/nufinetes/nufinetes-link.git
-git branch -M main
-git push -uf origin main
+
+2.Add nufinetes-link to dapp dependencies
+```json
+"@vimworldinc/nufinetes-link": "^0.0.4",
 ```
 
-## Integrate with your tools
+3.add registry rule to .npmrc
+```json
+@vimworldinc:registry=https://gitlab.com/api/v4/packages/npm/
+//gitlab.com/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}
+//gitlab.com/api/v4/projects/35991878/packages/npm/:_authToken=${CI_JOB_TOKEN}
+```
 
-- [ ] [Set up project integrations](https://gitlab.com/vimworldinc/nufinetes/nufinetes-link/-/settings/integrations)
+4.Then you can run ```yarn install``` and install @vimworldinc/nufinetes-link library.
 
-## Collaborate with your team
+## Basic Usage
+#### create and activate the connector 
+After installation, you can create a nufinetes connector for your dapp as follows
+```js
+import { initializeConnector } from "@web3-react/core";
+import { NufinetesConnector } from "@vimworldinc/nufinetes-link";
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+export const [nufinetes, hooks] = initializeConnector<NufinetesConnector>(
+	(actions) =>
+		new NufinetesConnector(actions, {
+			rpc: [],
+		}),
+	[818000000, 818000001]
+);
+```
 
-## Test and Deploy
+As the codes above shows, initializeConnector exports an array includes **"nufinetes"** and **"hooks"**, 
+```js
+export const [nufinetes, hooks] = initializeConnector<NufinetesConnector> ...
+```
 
-Use the built-in continuous integration in GitLab.
+**"nufinetes"** is the  instance of the connector. 
+you can attempt to connect eagerly on mount (only try to get connection status, if not conneted, only returns a disconnected status without attempt to connect).
+```js
+useEffect(() => {
+	void nufinetes.connectEagerly()
+}, [])
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+While you want to connect the wallet, you can use nufinetes to activate the wallet
+```js
+await connector.activate(desiredChainId === -1 ? undefined : getAddChainParameters(desiredChainId))
+```
+You can pass either a chain id number or an rpc rule object to **connector.activate** method, then the connector will try to connect to your designated network.  
 
-***
+and also a deactivate method is provided
+```jsx
+<button onClick={() => void connector.deactivate()}>Disconnect</button>
+```
 
-# Editing this README
+#### get status of Nufinetes wallet
+```js
+export const [nufinetes, hooks] = initializeConnector<NufinetesConnector> ...
+```
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+"hooks" is a collection of hooks that provides every kind of wallet status. 
+```js
+const { useChainId, useAccount, useAccounts, useError, useIsActivating, useIsActive, useProvider } = hooks
+```
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- **useChainId:** the chain id of current wallet
+- **useAccount** the priority account that current wallet provides
+- **useAccounts** all accounts provided by the linked wallet
+- **useIsActivating** returns true while the connector is attempting to activate
+- **useIsActive** while the connector is activated and current chain id equals the desiredChainId (if provided), returns true to tell dapp that the wallet is connected correctly.
+- **useError** returns any error that connector throws
+- **useProvider** returns a instance of Wallet Connect. 
 
-## Name
-Choose a self-explaining name for your project.
+In the dapps you can freely use these states according to your business.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Advanced Usages: Web3ReactProvider
+#### native provider
+a react context provider called Web3ReactProvider is exported by '@web3-react/core'
+```js
+import { Web3ReactProvider } from '@web3-react/core'
+```
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+You can use this context provider in your app entrance, then to use wallet status everywhere in your dapp
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+**in entrance components, for example App.tsx**
+```jsx
+import { Web3ReactHooks, Web3ReactProvider } from '@web3-react/core'
+import { NufinetesConnector } from '@vimworldinc/nufinetes-link'
+import { MetaMask } from '@web3-react/metamask'
+import { hooks as nufinetesHooks, nufinetes } from '../connectors/nufinetes'
+import { hooks as metaMaskHooks, metaMask } from '../connectors/metaMask'
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+const connectors: [MetaMask | NufinetesConnector | WalletConnect, Web3ReactHooks][] = [
+	[nufinetes, nufinetesHooks],
+	[metaMask, metaMaskHooks],
+]
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+  
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+export default function ProviderExample() {
+return (
+		<Web3ReactProvider 
+			//1. pass an array of connectors to Web3ReactProvider
+			connectors={connectors} 
+			//2. or pass a connetor as a connectorOverride to the provider
+			// connectorOverride={[nufinetes, nufinetesHooks]} 
+			lookupENS={false}>
+			...children components
+		</Web3ReactProvider>
+	)
+}
+```
+there are two ways to pass available connectors to Web3ReactProvider
+1. pass an array of connectors to Web3ReactProvider
+	in this way the provider will set all the connectors passed as available connector, and the priority of these connectors is based on the order of the connectors array.
+	in the example, nufinetes will be the first priority connector. 
+	only if nufinetes is disconnected, Web3ReactProvider will seek for MetaMask connection.
+2. pass a connetor as a connectorOverride to the provider
+	if you passed connectorOverride to provider, the provider will always take this connector as the priority connector, no matter how many other connectors you passed in "connectors" attribute. 
+	
+**It is important to set 'lookupENS' attribute to false, because currently our nufinetes provider is just an native Wallet Connect instance, lookup for ens name is not supported on it.**
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+**in children components**
+```jsx
+import { useWeb3React } from '@web3-react/core'
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+const CurrentWallet = () => {
+	const { connector, chainId, accounts, isActivating, error, account, 	isActive, provider } = useWeb3React()
+	
+	const handleConnect = () => {
+		connector.activate()
+	}
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+	return (
+		<div>{isActive ? account : <div onClick={handleConnect}>Connect Wallet</div>}</div>
+	)
+}
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+export default CurrentWallet
+```
+web3-react/core also provides a useWeb3React hook for developers to use the web3react context.
+In the basic usages showed the methods to get wallet status by each hooks, now you can derectly get all wallet status by a single useWeb3React hook, and this hook can be called everywhere !
+The useWeb3React hook also exports the connector instance, you can bind some wallet activation actions everywhere in your dapp.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+#### custom provider
+If you don't want to use the native web3ReactProvider, or you have some customized status in your dapp, you can create your own context to provide any wallet and dapp status you need.
 
-## License
-For open source projects, say how it is licensed.
+**One way is to create a context that extends native provider**
+in entrance component
+```jsx
+	<Web3ReactProvider connectors={connectors} lookupENS={false}>
+		<ExtendProvider>
+			<DappContent />
+		</ExtendProvider>
+	</Web3ReactProvider>
+```
+in ExtendProvider 
+```jsx
+import { useWeb3React } from '@web3-react/core'
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+export const ExtendProvider = ({ children }: { children: ReactNode }) => {
+	const { connector, chainId, accounts, isActivating, error, account, isActive, provider } = useWeb3React()
+	const [authCode, setAuthCode] = useState('')
+	const [signing, setSigning] = useState(false)
+	
+	useEffect(()=>{
+		setSigning(true)
+		// some async function to get authCode by connected account
+		getAuthCode(account).then(code => setAuthCode(code)).finally(()=>{
+			setSigning(false)
+		})
+	}, [isActive])
+	
+	return (
+		<ExtendContext.Provider
+			value={{
+				account,
+				authCode,
+				signing
+			}}
+		>
+		{children}
+		</ExtendContext.Provider>
+	)
+})
+```
+
+In this example, we used native wallet status in another Context, while the wallet is connected, then the ExtendContext will get the linked account and use it to get an auth token for your dapp.
+
+**Another way is to create a completely new context**
+here is an example:
+```jsx
+export const WalletProvider = ({children}: {children: ReactNode}) => {
+	// you can manage your's desired wallet type by your state manager
+	const walletType = useSelector(selectWalletType)
+	const chainCorrect = useSelector(selectChainCorrect)
+	const someOtherStatus = useSelector(selectSomeOtherStatus)
+	
+	// create a function to get correct connector by current walletType
+	const [connector, {useAccount, useProvider, useChainId, useIsActive, useIsActivating, useError, useAccounts}] = getTargetConnector(walletType)
+	const account = useAccount()
+	const accounts = useAccounts()
+	const web3Provider = useProvider()
+	const chainId = useChainId()
+	const isActive = useIsActive()
+	const isActivating = useIsActivating()
+	const error = useError()
+
+	const customizedStatus = useMemo(()=>{
+		return someOtherStatus && isActive
+	}, [someOtherStatus, isActive])
+	
+	return (
+		<Web3WalletProvider.Provider
+			value={{
+				account: chainCorrect && account,
+				provider: web3Provider,
+				currentChainId: chainId,
+				isActive: chainCorrect && isActive,
+				connector: connector,
+				error: error,
+				isActivating,
+				chainCorrect: chainCorrect,
+				walletType,
+				customizedStatus: customizedStatus
+			}}
+		>
+		{children}
+		</Web3WalletProvider.Provider>
+	)
+})
+```
+
+In this example, you provided all web3React native wallet status, such as 'account', 'isActive' or 'provider', and you created some new wallet status like 'walletType', 'chainCorrect' or any 'customizedStatus'. Managing multiple wallet connection and their status will be very easy!
