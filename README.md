@@ -41,11 +41,11 @@ import { initializeConnector } from "@web3-react/core";
 import { NufinetesConnector } from "@vimworldinc/nufinetes-link";
 
 export const [nufinetes, hooks] = initializeConnector<NufinetesConnector>(
- (actions) =>
-  new NufinetesConnector(actions, {
-   rpc: [],
-  }),
- [818000000, 818000001]
+	(actions) =>
+		new NufinetesConnector(actions, {
+			rpc: [],
+		}),
+	[818000000, 818000001]
 );
 ```
 
@@ -58,7 +58,7 @@ export const [nufinetes, hooks] = initializeConnector<NufinetesConnector> ...
 you can attempt to connect eagerly on mount (only try to get connection status, if not conneted, only returns a disconnected status without attempt to connect).
 ```js
 useEffect(() => {
- void nufinetes.connectEagerly()
+	void nufinetes.connectEagerly()
 }, [])
 ```
 
@@ -111,33 +111,33 @@ import { hooks as nufinetesHooks, nufinetes } from '../connectors/nufinetes'
 import { hooks as metaMaskHooks, metaMask } from '../connectors/metaMask'
 
 const connectors: [MetaMask | NufinetesConnector | WalletConnect, Web3ReactHooks][] = [
- [nufinetes, nufinetesHooks],
- [metaMask, metaMaskHooks],
+	[nufinetes, nufinetesHooks],
+	[metaMask, metaMaskHooks],
 ]
 
   
 
 export default function ProviderExample() {
 return (
-  <Web3ReactProvider 
-   //1. pass an array of connectors to Web3ReactProvider
-   connectors={connectors} 
-   //2. or pass a connetor as a connectorOverride to the provider
-   // connectorOverride={[nufinetes, nufinetesHooks]} 
-   lookupENS={false}>
-   ...children components
-  </Web3ReactProvider>
- )
+		<Web3ReactProvider 
+			//1. pass an array of connectors to Web3ReactProvider
+			connectors={connectors} 
+			//2. or pass a connetor as a connectorOverride to the provider
+			// connectorOverride={[nufinetes, nufinetesHooks]} 
+			lookupENS={false}>
+			...children components
+		</Web3ReactProvider>
+	)
 }
 ```
 there are two ways to pass available connectors to Web3ReactProvider
 1. pass an array of connectors to Web3ReactProvider
- in this way the provider will set all the connectors passed as available connector, and the priority of these connectors is based on the order of the connectors array.
- in the example, nufinetes will be the first priority connector. 
- only if nufinetes is disconnected, Web3ReactProvider will seek for MetaMask connection.
+	in this way the provider will set all the connectors passed as available connector, and the priority of these connectors is based on the order of the connectors array.
+	in the example, nufinetes will be the first priority connector. 
+	only if nufinetes is disconnected, Web3ReactProvider will seek for MetaMask connection.
 2. pass a connetor as a connectorOverride to the provider
- if you passed connectorOverride to provider, the provider will always take this connector as the priority connector, no matter how many other connectors you passed in "connectors" attribute. 
- 
+	if you passed connectorOverride to provider, the provider will always take this connector as the priority connector, no matter how many other connectors you passed in "connectors" attribute. 
+	
 **It is important to set 'lookupENS' attribute to false, because currently our nufinetes provider is just an native Wallet Connect instance, lookup for ens name is not supported on it.**
 
 **in children components**
@@ -145,15 +145,15 @@ there are two ways to pass available connectors to Web3ReactProvider
 import { useWeb3React } from '@web3-react/core'
 
 const CurrentWallet = () => {
- const { connector, chainId, accounts, isActivating, error, account,  isActive, provider } = useWeb3React()
- 
- const handleConnect = () => {
-  connector.activate()
- }
+	const { connector, chainId, accounts, isActivating, error, account, 	isActive, provider } = useWeb3React()
+	
+	const handleConnect = () => {
+		connector.activate()
+	}
 
- return (
-  <div>{isActive ? account : <div onClick={handleConnect}>Connect Wallet</div>}</div>
- )
+	return (
+		<div>{isActive ? account : <div onClick={handleConnect}>Connect Wallet</div>}</div>
+	)
 }
 
 export default CurrentWallet
@@ -168,40 +168,40 @@ If you don't want to use the native web3ReactProvider, or you have some customiz
 **One way is to create a context that extends native provider**
 in entrance component
 ```jsx
- <Web3ReactProvider connectors={connectors} lookupENS={false}>
-  <ExtendProvider>
-   <DappContent />
-  </ExtendProvider>
- </Web3ReactProvider>
+	<Web3ReactProvider connectors={connectors} lookupENS={false}>
+		<ExtendProvider>
+			<DappContent />
+		</ExtendProvider>
+	</Web3ReactProvider>
 ```
 in ExtendProvider 
 ```jsx
 import { useWeb3React } from '@web3-react/core'
 
 export const ExtendProvider = ({ children }: { children: ReactNode }) => {
- const { connector, chainId, accounts, isActivating, error, account, isActive, provider } = useWeb3React()
- const [authCode, setAuthCode] = useState('')
- const [signing, setSigning] = useState(false)
- 
- useEffect(()=>{
-  setSigning(true)
-  // some async function to get authCode by connected account
-  getAuthCode(account).then(code => setAuthCode(code)).finally(()=>{
-   setSigning(false)
-  })
- }, [isActive])
- 
- return (
-  <ExtendContext.Provider
-   value={{
-    account,
-    authCode,
-    signing
-   }}
-  >
-  {children}
-  </ExtendContext.Provider>
- )
+	const { connector, chainId, accounts, isActivating, error, account, isActive, provider } = useWeb3React()
+	const [authCode, setAuthCode] = useState('')
+	const [signing, setSigning] = useState(false)
+	
+	useEffect(()=>{
+		setSigning(true)
+		// some async function to get authCode by connected account
+		getAuthCode(account).then(code => setAuthCode(code)).finally(()=>{
+			setSigning(false)
+		})
+	}, [isActive])
+	
+	return (
+		<ExtendContext.Provider
+			value={{
+				account,
+				authCode,
+				signing
+			}}
+		>
+		{children}
+		</ExtendContext.Provider>
+	)
 })
 ```
 
@@ -211,43 +211,43 @@ In this example, we used native wallet status in another Context, while the wall
 here is an example:
 ```jsx
 export const WalletProvider = ({children}: {children: ReactNode}) => {
- // you can manage your's desired wallet type by your state manager
- const walletType = useSelector(selectWalletType)
- const chainCorrect = useSelector(selectChainCorrect)
- const someOtherStatus = useSelector(selectSomeOtherStatus)
- 
- // create a function to get correct connector by current walletType
- const [connector, {useAccount, useProvider, useChainId, useIsActive, useIsActivating, useError, useAccounts}] = getTargetConnector(walletType)
- const account = useAccount()
- const accounts = useAccounts()
- const web3Provider = useProvider()
- const chainId = useChainId()
- const isActive = useIsActive()
- const isActivating = useIsActivating()
- const error = useError()
+	// you can manage your's desired wallet type by your state manager
+	const walletType = useSelector(selectWalletType)
+	const chainCorrect = useSelector(selectChainCorrect)
+	const someOtherStatus = useSelector(selectSomeOtherStatus)
+	
+	// create a function to get correct connector by current walletType
+	const [connector, {useAccount, useProvider, useChainId, useIsActive, useIsActivating, useError, useAccounts}] = getTargetConnector(walletType)
+	const account = useAccount()
+	const accounts = useAccounts()
+	const web3Provider = useProvider()
+	const chainId = useChainId()
+	const isActive = useIsActive()
+	const isActivating = useIsActivating()
+	const error = useError()
 
- const customizedStatus = useMemo(()=>{
-  return someOtherStatus && isActive
- }, [someOtherStatus, isActive])
- 
- return (
-  <Web3WalletProvider.Provider
-   value={{
-    account: chainCorrect && account,
-    provider: web3Provider,
-    currentChainId: chainId,
-    isActive: chainCorrect && isActive,
-    connector: connector,
-    error: error,
-    isActivating,
-    chainCorrect: chainCorrect,
-    walletType,
-    customizedStatus: customizedStatus
-   }}
-  >
-  {children}
-  </Web3WalletProvider.Provider>
- )
+	const customizedStatus = useMemo(()=>{
+		return someOtherStatus && isActive
+	}, [someOtherStatus, isActive])
+	
+	return (
+		<Web3WalletProvider.Provider
+			value={{
+				account: chainCorrect && account,
+				provider: web3Provider,
+				currentChainId: chainId,
+				isActive: chainCorrect && isActive,
+				connector: connector,
+				error: error,
+				isActivating,
+				chainCorrect: chainCorrect,
+				walletType,
+				customizedStatus: customizedStatus
+			}}
+		>
+		{children}
+		</Web3WalletProvider.Provider>
+	)
 })
 ```
 
