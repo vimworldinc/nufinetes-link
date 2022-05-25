@@ -5,8 +5,11 @@ import type { Actions, ProviderRpcError, AddEthereumChainParameter } from '@web3
 import { Connector } from '@web3-react/types'
 import EventEmitter3 from 'eventemitter3'
 import type { EventEmitter } from 'node:events'
+// import { getBestUrl } from './utils'
 
 export const URI_AVAILABLE = 'URI_AVAILABLE'
+
+const VE_CHAIN_IDS = [818000000, 818000001]
 
 type MockWalletConnectProvider = WalletConnectProvider &
   EventEmitter & {
@@ -28,10 +31,11 @@ export class NufinetesConnector extends Connector {
   public provider: MockWalletConnectProvider | undefined
   public readonly events = new EventEmitter3()
 
-  private readonly options: Omit<WalletConnectOptions, 'rpc'>
+  private readonly options: Omit<WalletConnectOptions, 'rpc' | 'client'>
   private readonly rpc: { [chainId: number]: string[] }
   private eagerConnection?: Promise<void>
   private treatModalCloseAsError: boolean
+  private isEvm: boolean
 
   /**
    * @param options - Options to pass to `@walletconnect/ethereum-provider`
@@ -43,7 +47,6 @@ export class NufinetesConnector extends Connector {
     if (connectEagerly && typeof window === 'undefined') {
       throw new Error('connectEagerly = true is invalid for SSR, instead use the connectEagerly method in a useEffect')
     }
-
     const { rpc, ...rest } = options
     this.rpc = Object.keys(rpc).reduce<{ [chainId: number]: string[] }>((accumulator, chainId) => {
       const value = rpc[Number(chainId)]
@@ -51,9 +54,18 @@ export class NufinetesConnector extends Connector {
       return accumulator
     }, {})
     this.options = rest
+    this.isEvm = false
     this.treatModalCloseAsError = treatModalCloseAsError
 
     if (connectEagerly) void this.connectEagerly()
+  }
+
+  private chainChangedListener = (chainId: number | string): void => {
+    this.actions.update({ chainId: parseChainId(chainId) })
+  }
+
+  private accountsChangedListener = (accounts: string[]): void => {
+    this.actions.update({ accounts })
   }
 
   private disconnectListener = (error: ProviderRpcError | undefined): void => {
@@ -61,16 +73,64 @@ export class NufinetesConnector extends Connector {
     this.actions.reportError(error)
   }
 
-  private sessionListener = (_: Error | null, payload: { params: { accounts: string[]; chainId: number }[] }): void => {
+  private updateProvider = async (chainId: number) => {
+    if (chainId && VE_CHAIN_IDS.includes(chainId)) {
+      this.isEvm = false
+      import('@walletconnect/client').then(async (m) => {
+        this.provider = new m.default({
+          bridge: 'https://bridge.walletconnect.org',
+          qrcodeModal: QRCodeModal,
+          // ...this.options,
+          // chainId,
+          // rpc: await rpc,
+        }) as unknown as MockWalletConnectProvider
+
+        this.provider.on('connect', this.sessionListener)
+        this.provider.on('session_update', this.sessionListener)
+        this.provider.on('disconnect', this.disconnectListener)
+        this.provider.on('modal_closed', this.modalClosingListener)
+        // this.provider.on('chainChanged', this.chainChangedListener)
+        // this.provider.on('accountsChanged', this.accountsChangedListener)
+        this.customProvider = this.provider
+        // this.provider.connector.on('display_uri', this.URIListener)
+      })
+    } else {
+      this.isEvm = true
+      import('@walletconnect/ethereum-provider').then(async (m) => {
+        this.provider = new m.default({
+          ...this.options,
+          // client: {
+          //   bridge: 'https://bridge.walletconnect.org',
+          //   qrcode: QRCodeModal,
+          // },
+          chainId,
+          rpc: [],
+        }) as unknown as MockWalletConnectProvider
+
+        this.provider.on('disconnect', this.disconnectListener)
+        this.provider.on('chainChanged', this.chainChangedListener)
+        this.provider.on('accountsChanged', this.accountsChangedListener)
+        this.provider.on('session_update', this.sessionListener)
+        // this.provider.connector.on('display_uri', this.URIListener)
+        this.customProvider = null
+      })
+    }
+  }
+
+  private sessionListener = async (
+    _: Error | null,
+    payload: { params: { accounts: string[]; chainId: number }[] }
+  ): Promise<void> => {
     try {
       const {
         params: [{ accounts, chainId }],
       } = payload
-      if (accounts.length) {
-        this.actions.update({ chainId: parseChainId(chainId), accounts })
-      } else {
-        throw new Error('No accounts returned')
-      }
+
+      // this.updateProvider()
+      this.actions.startActivation()
+
+      await this.updateProvider(chainId)
+      this.actions.update({ chainId: parseChainId(chainId), accounts })
     } catch (error) {
       throw new Error('Error occurred')
     }
@@ -95,46 +155,34 @@ export class NufinetesConnector extends Connector {
     this.events.emit(URI_AVAILABLE, payload.params[0])
   }
 
-  private async isomorphicInitialize(chainId = Number(Object.keys(this.rpc)[0])): Promise<void> {
+  private async isomorphicInitialize(chainId?: number): Promise<void> {
     if (this.eagerConnection) return this.eagerConnection
 
-    // because we can only use 1 url per chainId, we need to decide between multiple, where necessary
-    // const rpc = Promise.all(
-    //   Object.keys(this.rpc).map(
-    //     async (chainId): Promise<[number, string]> => [Number(chainId), await getBestUrl(this.rpc[Number(chainId)])]
-    //   )
-    // ).then((results) =>
-    //   results.reduce<{ [chainId: number]: string }>((accumulator, [chainId, url]) => {
-    //     accumulator[chainId] = url
-    //     return accumulator
-    //   }, {})
-    // )
+    if (chainId) {
+      await this.updateProvider(chainId)
+    } else {
+      this.isEvm = false
+      await (this.eagerConnection = import('@walletconnect/client').then(async (m) => {
+        this.provider = new m.default({
+          bridge: 'https://bridge.walletconnect.org',
+          qrcodeModal: QRCodeModal,
+          // ...this.options,
+          // chainId,
+          // rpc: await rpc,
+        }) as unknown as MockWalletConnectProvider
 
-    await (this.eagerConnection = import('@walletconnect/client').then(async (m) => {
-      this.provider = new m.default({
-        bridge: 'https://bridge.walletconnect.org',
-        qrcodeModal: QRCodeModal,
-        // ...this.options,
-        // chainId,
-        // rpc: await rpc,
-      }) as unknown as MockWalletConnectProvider
-
-      this.provider.on('connect', this.sessionListener)
-      this.provider.on('session_update', this.sessionListener)
-      this.provider.on('disconnect', this.disconnectListener)
-      this.provider.on('modal_closed', this.modalClosingListener)
-      // this.provider.on('chainChanged', this.chainChangedListener)
-      // this.provider.on('accountsChanged', this.accountsChangedListener)
-
-      this.customProvider = this.provider
-      // this.provider.connector.on('display_uri', this.URIListener)
-    }))
+        this.provider.on('connect', this.sessionListener)
+        this.provider.on('session_update', this.sessionListener)
+        this.provider.on('disconnect', this.disconnectListener)
+        this.provider.on('modal_closed', this.modalClosingListener)
+        this.customProvider = this.provider
+      }))
+    }
   }
 
   /** {@inheritdoc Connector.connectEagerly} */
   public async connectEagerly(): Promise<void> {
     const cancelActivation = this.actions.startActivation()
-
     await this.isomorphicInitialize()
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -146,6 +194,9 @@ export class NufinetesConnector extends Connector {
         const accounts = await this.provider!.accounts
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.provider!.chainId)
+        if (!VE_CHAIN_IDS.includes(chainId) && this.customProvider) {
+          await this.updateProvider(chainId)
+        }
 
         if (accounts.length) {
           this.actions.update({ chainId, accounts })
@@ -203,6 +254,9 @@ export class NufinetesConnector extends Connector {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.provider!.chainId)
 
+        if (!VE_CHAIN_IDS.includes(chainId) && this.customProvider) {
+          await this.updateProvider(chainId)
+        }
         if (!desiredChainId || desiredChainId === chainId) {
           return this.actions.update({ chainId, accounts })
         }
@@ -249,9 +303,19 @@ export class NufinetesConnector extends Connector {
     // await this.provider?.disconnect()
     // this.provider?.killSession()
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    if (this.provider!.connected) {
+    if (this.isEvm) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.provider!.killSession()
+      // const wcProvider = (this.provider as any)?.signer?.connection?.wc
+      // console.log(wcProvider, wcProvider.connected, 'evm disconnect')
+      // if (wcProvider?.connected && wcProvider?.killSession) {
+      //   wcProvider.killSession()
+      // }
+      await this.provider!?.disconnect()
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    } else if (this.provider!.connected) {
+      this.customProvider = null
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.provider!?.killSession()
     }
     this.provider = undefined
     this.eagerConnection = undefined

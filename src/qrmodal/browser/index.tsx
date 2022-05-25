@@ -60,15 +60,29 @@ function getWrappedCallback(cb: any): any {
   }
 }
 
+function getVimworldLangStorage(): string | null {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return null
+  }
+  const isVimworld = Boolean(window.localStorage.getItem('@VIMWORLD/DAPP'))
+  if (!isVimworld) {
+    return null
+  }
+
+  const lang = window.localStorage.getItem('lang') || 'en'
+  return lang.split('-')[0]
+}
+
 function getText(): TextMap {
-  const lang = getNavigatorOrThrow().language.split('-')[0] || 'en'
+  const vimLang = getVimworldLangStorage()
+  const lang = vimLang || getNavigatorOrThrow().language.split('-')[0] || 'en'
   return Languages[lang] || Languages['en']
 }
 
 export function open(
   uri: string,
   cb: any,
-  qrcodeModalOptions?: IQRCodeModalOptions,
+  qrcodeModalOptions?: IQRCodeModalOptions
   // customizeModal?: JSX.Element | string
 ) {
   injectStyleSheet()
