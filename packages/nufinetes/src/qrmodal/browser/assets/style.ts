@@ -923,7 +923,7 @@ body {
 }
 .walletconnect-modal__desktopLinkInner {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
 }
 .walletconnect-modal__desktopLinkInner p {
