@@ -5,7 +5,7 @@ import type { Actions, ProviderRpcError, AddEthereumChainParameter } from '@web3
 import { Connector } from '@web3-react/types'
 import EventEmitter3 from 'eventemitter3'
 import type { EventEmitter } from 'node:events'
-// import { getBestUrl } from './utils'
+import { getBestUrl } from './utils'
 
 export const URI_AVAILABLE = 'URI_AVAILABLE'
 
@@ -96,6 +96,17 @@ export class NufinetesConnector extends Connector {
       })
     } else {
       this.isEvm = true
+      const rpc = await Promise.all(
+        Object.keys(this.rpc).map(
+          async (chainId): Promise<[number, string]> => [Number(chainId), await getBestUrl(this.rpc[Number(chainId)])]
+        )
+      ).then((results) =>
+        results.reduce<{ [chainId: number]: string }>((accumulator, [chainId, url]) => {
+          accumulator[chainId] = url
+          return accumulator
+        }, {})
+      )
+
       import('@walletconnect/ethereum-provider').then(async (m) => {
         this.provider = new m.default({
           ...this.options,
@@ -104,7 +115,7 @@ export class NufinetesConnector extends Connector {
           //   qrcode: QRCodeModal,
           // },
           chainId,
-          rpc: [],
+          rpc,
         }) as unknown as MockWalletConnectProvider
 
         this.provider.on('disconnect', this.disconnectListener)
@@ -129,9 +140,11 @@ export class NufinetesConnector extends Connector {
       // this.updateProvider()
       this.actions.startActivation()
 
+      // update provider for new chain
       await this.updateProvider(chainId)
       this.actions.update({ chainId: parseChainId(chainId), accounts })
     } catch (error) {
+      console.log(error, 'check error')
       throw new Error('Error occurred')
     }
   }
@@ -158,8 +171,10 @@ export class NufinetesConnector extends Connector {
   private async isomorphicInitialize(chainId?: number): Promise<void> {
     if (this.eagerConnection) return this.eagerConnection
 
+    // if a chainId is provided, just update the provider by chainId
     if (chainId) {
       await this.updateProvider(chainId)
+      // initialize the provider to a wallet-connect instance by default
     } else {
       this.isEvm = false
       await (this.eagerConnection = import('@walletconnect/client').then(async (m) => {
@@ -194,7 +209,10 @@ export class NufinetesConnector extends Connector {
         const accounts = await this.provider!.accounts
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.provider!.chainId)
+
+        // the case that chain is not a veChain, we should update provider to a ethereum-provider
         if (!VE_CHAIN_IDS.includes(chainId) && this.customProvider) {
+          // after isomorphicInitialize with out chainId, the provider will be a wallet-connect instance. We need a ethereum-provider for a Evm chain, so we call updateProvider again with a chainId parameter.
           await this.updateProvider(chainId)
         }
 
@@ -254,7 +272,9 @@ export class NufinetesConnector extends Connector {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.provider!.chainId)
 
+        // the case that chain is not a veChain, we should update provider to a ethereum-provider
         if (!VE_CHAIN_IDS.includes(chainId) && this.customProvider) {
+          // after isomorphicInitialize with out chainId, the provider will be a wallet-connect instance. We need a ethereum-provider for a Evm chain, so we call updateProvider again with a chainId parameter.
           await this.updateProvider(chainId)
         }
         if (!desiredChainId || desiredChainId === chainId) {
