@@ -1,5 +1,9 @@
 # Nufinetes-Link
 
+## Version 0.0.8
+
+Fix rpc url error while initializing provider
+
 ## Version 0.0.7
 
 Add Ethereum-Provider supporting
