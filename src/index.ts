@@ -36,6 +36,7 @@ export class NufinetesConnector extends Connector {
   private eagerConnection?: Promise<void>
   private treatModalCloseAsError: boolean
   private isEvm: boolean
+  private wcInstance: MockWalletConnectProvider | undefined
 
   /**
    * @param options - Options to pass to `@walletconnect/ethereum-provider`
@@ -54,6 +55,7 @@ export class NufinetesConnector extends Connector {
       return accumulator
     }, {})
     this.options = rest
+    this.wcInstance = undefined
     this.isEvm = false
     this.treatModalCloseAsError = treatModalCloseAsError
 
@@ -74,10 +76,9 @@ export class NufinetesConnector extends Connector {
   }
 
   private updateProvider = async (chainId: number) => {
-    if (chainId && VE_CHAIN_IDS.includes(chainId)) {
-      this.isEvm = false
+    if (!this.wcInstance) {
       import('@walletconnect/client').then(async (m) => {
-        this.provider = new m.default({
+        this.wcInstance = new m.default({
           bridge: 'https://bridge.walletconnect.org',
           qrcodeModal: QRCodeModal,
           // ...this.options,
@@ -85,15 +86,25 @@ export class NufinetesConnector extends Connector {
           // rpc: await rpc,
         }) as unknown as MockWalletConnectProvider
 
-        this.provider.on('connect', this.sessionListener)
-        this.provider.on('session_update', this.sessionListener)
-        this.provider.on('disconnect', this.disconnectListener)
-        this.provider.on('modal_closed', this.modalClosingListener)
-        // this.provider.on('chainChanged', this.chainChangedListener)
-        // this.provider.on('accountsChanged', this.accountsChangedListener)
-        this.customProvider = this.provider
+        this.wcInstance.on('connect', this.sessionListener)
+        this.wcInstance.on('session_update', this.sessionListener)
+        this.wcInstance.on('disconnect', this.disconnectListener)
+        this.wcInstance.on('modal_closed', this.modalClosingListener)
         // this.provider.connector.on('display_uri', this.URIListener)
       })
+    }
+
+    if (chainId && VE_CHAIN_IDS.includes(chainId)) {
+      this.isEvm = false
+      console.log(this.wcInstance)
+      this.provider = this.wcInstance
+      // this.provider.on('connect', this.sessionListener)
+      // this.provider.on('session_update', this.sessionListener)
+      // this.provider.on('disconnect', this.disconnectListener)
+      // this.provider.on('modal_closed', this.modalClosingListener)
+      // this.provider.on('chainChanged', this.chainChangedListener)
+      // this.provider.on('accountsChanged', this.accountsChangedListener)
+      this.customProvider = this.provider
     } else {
       this.isEvm = true
       const rpc = await Promise.all(
@@ -170,7 +181,7 @@ export class NufinetesConnector extends Connector {
 
   private async isomorphicInitialize(chainId?: number): Promise<void> {
     if (this.eagerConnection) return this.eagerConnection
-
+    
     // if a chainId is provided, just update the provider by chainId
     if (chainId) {
       await this.updateProvider(chainId)
@@ -186,10 +197,11 @@ export class NufinetesConnector extends Connector {
           // rpc: await rpc,
         }) as unknown as MockWalletConnectProvider
 
-        this.provider.on('connect', this.sessionListener)
-        this.provider.on('session_update', this.sessionListener)
-        this.provider.on('disconnect', this.disconnectListener)
-        this.provider.on('modal_closed', this.modalClosingListener)
+        this.wcInstance = this.provider
+        this.wcInstance.on('connect', this.sessionListener)
+        this.wcInstance.on('session_update', this.sessionListener)
+        this.wcInstance.on('disconnect', this.disconnectListener)
+        this.wcInstance.on('modal_closed', this.modalClosingListener)
         this.customProvider = this.provider
       }))
     }
@@ -201,7 +213,7 @@ export class NufinetesConnector extends Connector {
     await this.isomorphicInitialize()
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    if (this.provider!.connected) {
+    if (this.wcInstance!?.connected) {
       try {
         // for walletconnect, we always use sequential instead of parallel fetches because otherwise
         // chainId defaults to 1 even if the connecting wallet isn't on mainnet
@@ -247,11 +259,11 @@ export class NufinetesConnector extends Connector {
     }
 
     // this early return clause catches some common cases if we're already connected
-    if (this.provider?.connected) {
-      if (!desiredChainId || desiredChainId === this.provider.chainId) return
+    if (this.wcInstance?.connected) {
+      if (!desiredChainId || desiredChainId === this.wcInstance?.chainId) return
 
       const desiredChainIdHex = `0x${desiredChainId.toString(16)}`
-      return this.provider
+      return (this.provider as MockWalletConnectProvider)
         .request<void>({
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: desiredChainIdHex }],
@@ -288,7 +300,7 @@ export class NufinetesConnector extends Connector {
         this.actions.update({ chainId, accounts })
       }
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      await this.provider!.createSession()
+      await this.wcInstance!?.createSession()
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       // const uri = this.provider!.uri
       // QRCodeModal.open(uri)
@@ -332,12 +344,13 @@ export class NufinetesConnector extends Connector {
       // }
       await this.provider!?.disconnect()
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    } else if (this.provider!.connected) {
+    } else if (this.wcInstance!?.connected) {
       this.customProvider = null
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.provider!?.killSession()
+      this.wcInstance!?.killSession()
     }
     this.provider = undefined
+    this.wcInstance = undefined
     this.eagerConnection = undefined
     this.actions.reportError(error)
   }
