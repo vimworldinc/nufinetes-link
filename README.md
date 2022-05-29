@@ -1,5 +1,11 @@
 # Nufinetes-Link
 
+## Version 0.0.9
+
+1. Add wcInstance property to store wallet connect instance for operation. 
+
+2. Initialize providers depends on desiredChainId
+
 ## Version 0.0.8
 
 Fix rpc url error while initializing provider
