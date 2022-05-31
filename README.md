@@ -1,10 +1,12 @@
 # Nufinetes-Link
 
-## Version 0.0.10
+## Version 0.0.11
 
 1. Add a callback after function updateProvider is done, to ensure update account will be excuted after the provider exactly updated.
 
 2. Fix stability bugs
+
+3. Prevent update provider while nothing changed in update session event.
 
 ## Version 0.0.9
 
