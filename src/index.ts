@@ -37,6 +37,8 @@ export class NufinetesConnector extends Connector {
   private treatModalCloseAsError: boolean
   private isEvm: boolean
   private wcInstance: MockWalletConnectProvider | undefined
+  private lastChainId: number
+  private lastAccounts: string[]
 
   /**
    * @param options - Options to pass to `@walletconnect/ethereum-provider`
@@ -57,6 +59,8 @@ export class NufinetesConnector extends Connector {
     this.options = rest
     this.wcInstance = undefined
     this.isEvm = false
+    this.lastChainId = -1
+    this.lastAccounts = []
     this.treatModalCloseAsError = treatModalCloseAsError
 
     if (connectEagerly) void this.connectEagerly()
@@ -156,9 +160,19 @@ export class NufinetesConnector extends Connector {
         params: [{ accounts, chainId }],
       } = payload
 
+      if (
+        this.lastChainId === chainId &&
+        this.lastAccounts.length === accounts.length &&
+        (!accounts.length ||
+          this.lastAccounts.every((x) => accounts.map((a) => a.toLowerCase()).includes(x.toLowerCase())))
+      ) {
+        return
+      }
       // this.updateProvider()
       this.actions.startActivation()
-
+      // this.actions.update({ chainId })
+      this.lastChainId = chainId
+      this.lastAccounts = accounts
       // update provider for new chain
       await this.updateProvider(chainId, () => {
         this.actions.update({ chainId: parseChainId(chainId), accounts })
@@ -230,6 +244,8 @@ export class NufinetesConnector extends Connector {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.wcInstance!.chainId)
 
+        this.lastChainId = chainId
+        this.lastAccounts = accounts
         // the case that chain is not a veChain, we should update provider to a ethereum-provider
         if (!VE_CHAIN_IDS.includes(chainId) && this.customProvider) {
           // after isomorphicInitialize with out chainId, the provider will be a wallet-connect instance. We need a ethereum-provider for a Evm chain, so we call updateProvider again with a chainId parameter.
