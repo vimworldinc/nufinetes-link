@@ -1,5 +1,11 @@
 # Nufinetes-Link
 
+## Version 0.0.10
+
+1. Add a callback after function updateProvider is done, to ensure update account will be excuted after the provider exactly updated.
+
+2. Fix stability bugs
+
 ## Version 0.0.9
 
 1. Add wcInstance property to store wallet connect instance for operation. 
