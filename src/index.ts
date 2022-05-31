@@ -76,8 +76,6 @@ export class NufinetesConnector extends Connector {
   }
 
   private updateProvider = async (chainId: number, cb?: () => void) => {
-    console.log(chainId, VE_CHAIN_IDS, 'nufi 1')
-    console.log(chainId && VE_CHAIN_IDS.includes(chainId), 'nufi 2')
     if (!this.wcInstance) {
       import('@walletconnect/client').then(async (m) => {
         this.wcInstance = new m.default({
