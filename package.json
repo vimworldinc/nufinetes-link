@@ -10,7 +10,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "files": [
     "dist/*"
   ],
@@ -31,11 +31,11 @@
     "copy-to-clipboard": "^3.3.1",
     "preact": "10.4.1",
     "@ethersproject/providers": "^5",
+    "@walletconnect/ethereum-provider": "^1.7.5",
     "qrcode": "1.4.4"
   },
   "peerDependencies": {
-    "@walletconnect/client": "^1.7.8",
-    "@walletconnect/ethereum-provider": "^1.7.5"
+    "@walletconnect/client": "^1.7.8"
   },
   "devDependencies": {
     "@web3-react/store": "^8.0.18-beta.0",
