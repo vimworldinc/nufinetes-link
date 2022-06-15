@@ -30,7 +30,7 @@ function DesktopLink({ wcUri, text }: DesktopLinkProps) {
       </div>
       <a
         className="walletconnect-modal_appLink"
-        href="https://nufinetes.com/"
+        href="https://www.vimworld.com/nufinetes-download"
         target="_blank"
         rel="noopener noreferrer"
       >
