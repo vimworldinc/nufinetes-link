@@ -1,5 +1,19 @@
 # Nufinetes-Link
 
+## Version 0.1-Alpha
+
+It is considered Alpha software and may contain bugs or change significantly between patch versions.
+
+1. returns a Nufinetes-Web3-Provider to useProvider method, this customized web3 provider can be both used as a web3 provider and wallet connect instance, it means while you can directly call "send" method on NufinetesWeb3Provider, you can also call "sendCustomRequest" on it.
+
+This unified approach will be more stable than switching between web3-provider and wallet instance.
+
+2. Update connection stability
+
+3. Update qr modal style
+
+# Nufinetes-Link
+
 ## Version 0.0.11
 
 1. Add a callback after function updateProvider is done, to ensure update account will be excuted after the provider exactly updated.
@@ -10,7 +24,7 @@
 
 ## Version 0.0.9
 
-1. Add wcInstance property to store wallet connect instance for operation. 
+1. Add wcInstance property to store wallet connect instance for operation.
 
 2. Initialize providers depends on desiredChainId
 
@@ -38,11 +52,11 @@ A [web3-react](https://github.com/NoahZinsmeister/web3-react/) standard connecto
 
 ## Introduction
 
-Nufinetes-Link is an connector for connecting Vimworld dapps with a simple customizable configuration.
+Nufinetes-Link is a connector for connecting your Vimworld dapps and Nufinetes with a simple customizable configuration.
 
-It runs on web3-react/core library, and provides a completely and useful status of the Wallet Connect connection used by our dapps.
+It runs on web3-react/core library, and provides a complete and useful status of the Wallet Connect connection used by our dapps.
 
-The chains currently supported are **Ve Chain Mainnet and Testnet**, and chains that will be supported in the future will be **BNB Chain , 1AE Chain and every other EVM compatible chain.**
+The chains currently supported are **VeChain Mainnet and Testnet**, and chains that will be supported in the future will be **BNB Chain , and every other EVM compatible chain.**
 
 ## Preview
 
@@ -187,7 +201,7 @@ export default function ProviderExample() {
     <Web3ReactProvider
       //1. pass an array of connectors to Web3ReactProvider
       connectors={connectors}
-      //2. or pass a connetor as a connectorOverride to the provider
+      //2. or pass a connetor as a connectorOverride to the provider, this makes the provider ignore the connectors above and always return connectorOverride as the priority connector
       // connectorOverride={[nufinetes, nufinetesHooks]}
       lookupENS={false}
     >
@@ -240,7 +254,7 @@ export default CurrentWallet;
 ```
 
 web3-react/core also provides a useWeb3React hook for developers to use the web3react context.
-In the basic usages showed the methods to get wallet status by each hooks, now you can derectly get all wallet status by a single useWeb3React hook, and this hook can be called everywhere !
+In the basic usages showed the methods to get wallet status by each hooks, now you can directly get all wallet status by a single useWeb3React hook, and this hook can be called everywhere !
 The useWeb3React hook also exports the connector instance, you can bind some wallet activation actions everywhere in your dapp.
 
 #### custom provider
@@ -297,7 +311,7 @@ here is an example:
 
 ```jsx
 export const WalletProvider = ({children}: {children: ReactNode}) => {
- // you can manage your's desired wallet type by your state manager
+ // you can manage your desired wallet type by your state manager
  const walletType = useSelector(selectWalletType)
  const chainCorrect = useSelector(selectChainCorrect)
  const someOtherStatus = useSelector(selectSomeOtherStatus)
@@ -337,4 +351,4 @@ export const WalletProvider = ({children}: {children: ReactNode}) => {
 })
 ```
 
-In this example, you provided all web3React native wallet status, such as 'account', 'isActive' or 'provider', and you created some new wallet status like 'walletType', 'chainCorrect' or any 'customizedStatus'. Managing multiple wallet connection and their status will be very easy!
+In this example, you provided all web3React native wallet status, such as 'account', 'isActive' or 'provider', and you created some new wallet status like 'walletType', 'chainCorrect' or any 'customizedStatus'. Managing multiple wallet connections and their status will be very easy!
