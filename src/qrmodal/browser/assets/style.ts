@@ -462,7 +462,6 @@ body {
   transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   width: 100%;
   will-change: opacity;
-  padding: 40px;
   box-sizing: border-box;
 }
 
