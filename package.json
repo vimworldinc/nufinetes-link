@@ -1,12 +1,12 @@
 {
-  "name": "@vimworldinc/nufinetes-link",
+  "name": "@vimworld/nufinetes-link",
   "keywords": [
     "web3-react",
     "nufinetes"
   ],
   "author": "Spike Wang <spike.wang@vimworld.com>",
   "license": "GPL-3.0-or-later",
-  "repository": "https://gitlab.com/vimworldinc/nufinetes/nufinetes-link",
+  "repository": "https://github.com/vimworldinc/nufinetes-link",
   "publishConfig": {
     "access": "public"
   },
