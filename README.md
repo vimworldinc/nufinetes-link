@@ -2,23 +2,21 @@
 
 ## Version 0.1-Alpha
 
-It is considered Alpha software and may contain bugs or change significantly between patch versions.
+**It is considered Alpha software and may contain bugs or change significantly between patch versions.**
 
-1. returns a Nufinetes-Web3-Provider to useProvider method, this customized web3 provider can be both used as a web3 provider and wallet connect instance, it means while you can directly call "send" method on NufinetesWeb3Provider, you can also call "sendCustomRequest" on it.
+1. useProvider method will return a Nufinetes-Web3-Provider, this customized web3 provider can be both used as a web3 provider and Wallet Connect instance, it means that while you can directly call "send" method on NufinetesWeb3Provider, you can also call "sendCustomRequest" on it.
 
 This unified approach will be more stable than switching between web3-provider and wallet instance.
 
-2. Update connection stability
+2. Update connection stability.
 
-3. Update qr modal style
-
-# Nufinetes-Link
+3. Update qr modal style.
 
 ## Version 0.0.11
 
 1. Add a callback after function updateProvider is done, to ensure update account will be excuted after the provider exactly updated.
 
-2. Fix stability bugs
+2. Fix stability bugs.
 
 3. Prevent update provider while nothing changed in update session event.
 
@@ -26,15 +24,15 @@ This unified approach will be more stable than switching between web3-provider a
 
 1. Add wcInstance property to store wallet connect instance for operation.
 
-2. Initialize providers depends on desiredChainId
+2. Initialize providers depends on desiredChainId.
 
 ## Version 0.0.8
 
-Fix rpc url error while initializing provider
+Fix rpc url error while initializing provider.
 
 ## Version 0.0.7
 
-Add Ethereum-Provider supporting
+Add Ethereum-Provider supporting.
 
 **New feature**
 
@@ -58,11 +56,7 @@ It runs on web3-react/core library, and provides a complete and useful status of
 
 The chains currently supported are **VeChain Mainnet and Testnet**, and chains that will be supported in the future will be **BNB Chain , and every other EVM compatible chain.**
 
-## Preview
-
-You can test this library on: xxxxxxxxxxxxxxxxx
-
-## Installation (private library)
+## Installation
 
 1. Install Web3-React core library
 
@@ -70,21 +64,11 @@ You can test this library on: xxxxxxxxxxxxxxxxx
 yarn add @web3-react/core@8.0.25-beta.0
 ```
 
-2.Add nufinetes-link to dapp dependencies
+2. Install nufinetes-link to dapp
 
-```json
-"@vimworldinc/nufinetes-link": "^0.0.4",
+```bash
+yarn add @vimworld/nufinetes-link
 ```
-
-3.add registry rule to .npmrc
-
-```json
-@vimworldinc:registry=https://gitlab.com/api/v4/packages/npm/
-//gitlab.com/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}
-//gitlab.com/api/v4/projects/35991878/packages/npm/:_authToken=${CI_JOB_TOKEN}
-```
-
-4.Then you can run `yarn install` and install @vimworldinc/nufinetes-link library.
 
 ## Basic Usage
 
@@ -101,9 +85,20 @@ export const [nufinetes, hooks] =
   NufinetesConnector >
   ((actions) =>
     new NufinetesConnector(actions, {
+      // you should add rpc rules if you need nufi-link to acesss Evm chains
       rpc: [],
     }),
   [818000000, 818000001]);
+
+// interfaces of rpc parameters array
+interface BasicChainInformation {
+  urls: string[] // an array of rpc urls
+  name: string // name of the network
+}
+interface ExtendedChainInformation extends BasicChainInformation {
+  nativeCurrency: AddEthereumChainParameter['nativeCurrency'] // string, native currency of current network
+  blockExplorerUrls: AddEthereumChainParameter['blockExplorerUrls'] // string, blockExplorerUrl
+}
 ```
 
 As the codes above shows, initializeConnector exports an array includes **"nufinetes"** and **"hooks"**,

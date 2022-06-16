@@ -244,13 +244,13 @@ export class NufinetesConnector extends Connector {
       }
 
       // will be useful while our Nufinetes supported switch chain method in the future
-      const desiredChainIdHex = `0x${desiredChainId.toString(16)}`
-      return (this.provider as CustomWalletConnectProvider)
-        .request<void>({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: desiredChainIdHex }],
-        })
-        .catch(() => void 0)
+      // const desiredChainIdHex = `0x${desiredChainId.toString(16)}`
+      // return (this.provider.provider as CustomWalletConnectProvider)
+      //   .request<void>({
+      //     method: 'wallet_switchEthereumChain',
+      //     params: [{ chainId: desiredChainIdHex }],
+      //   })
+      //   .catch(() => void 0)
     }
 
     this.actions.startActivation()
