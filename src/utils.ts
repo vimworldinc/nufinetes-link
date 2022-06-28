@@ -1,11 +1,14 @@
+import { JsonRpcProvider as JrpcProvider } from '@ethersproject/providers'
+
 export async function getBestUrl(urls: string[]): Promise<string> {
   // if we only have 1 url, it's the best!
   if (urls.length === 1) return urls[0]
 
-  const [HttpConnection, JsonRpcProvider] = await Promise.all([
-    import('@walletconnect/jsonrpc-http-connection').then(({ HttpConnection }) => HttpConnection),
-    import('@walletconnect/jsonrpc-provider').then(({ JsonRpcProvider }) => JsonRpcProvider),
-  ])
+  // console.log(urls, 'updating 2')
+  // const [HttpConnection, JsonRpcProvider] = await Promise.all([
+  //   import('@walletconnect/jsonrpc-http-connection').then(({ HttpConnection }) => HttpConnection),
+  //   import('@walletconnect/jsonrpc-provider').then(({ JsonRpcProvider }) => JsonRpcProvider),
+  // ])
 
   // the below returns the first url for which there's been a successful call, prioritized by index
   return new Promise((resolve) => {
@@ -13,9 +16,11 @@ export async function getBestUrl(urls: string[]): Promise<string> {
     const successes: { [index: number]: boolean } = {}
 
     urls.forEach((url, i) => {
-      const http = new JsonRpcProvider(new HttpConnection(url))
-      void http
-        .request({ method: 'eth_chainId' })
+      const jsonRpc = new JrpcProvider(url)
+      // console.log(jsonRpc, 'check jsonRpc')
+      // const http = new JsonRpcProvider(new HttpConnection(url))
+      void jsonRpc
+        .send('eth_chainId', [])
         .then(() => true)
         .catch(() => false)
         .then((success) => {

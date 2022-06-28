@@ -1,4 +1,5 @@
-import type WalletConnectProvider from '@walletconnect/ethereum-provider'
+import type WalletConnectProvider from '@walletconnect/web3-provider'
+// import { JsonRpcProvider as JrpcProvider } from '@ethersproject/providers'
 import QRCodeModal from './qrmodal'
 import type { IWCEthRpcConnectionOptions } from '@walletconnect/types'
 import type { Actions, ProviderRpcError, AddEthereumChainParameter } from '@web3-react/types'
@@ -113,7 +114,7 @@ export class NufinetesConnector extends Connector {
       // for example: you can directly call sendCustomRequest in a NufinetesWeb3Provider
       this.provider = new NufinetesWeb3Provider(this.wcInstance as any, {
         ...this.options,
-        chainId,
+        chainId: chainId > 0 ? chainId : null,
         rpc,
       }) as unknown as CustomWalletConnectProvider
       this.provider.on('modal_closed', this.modalClosingListener)
@@ -202,7 +203,6 @@ export class NufinetesConnector extends Connector {
 
         this.lastChainId = chainId
         this.lastAccounts = accounts
-
         if (accounts.length) {
           this.actions.update({ chainId, accounts })
         } else {
