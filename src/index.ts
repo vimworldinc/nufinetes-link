@@ -138,12 +138,10 @@ export class NufinetesConnector extends Connector {
       const {
         params: [{ accounts, chainId }],
       } = payload
-
       if (
         this.lastChainId === chainId &&
         this.lastAccounts.length === accounts.length &&
-        (!accounts.length ||
-          this.lastAccounts.every((x) => accounts.map((a) => a.toLowerCase()).includes(x.toLowerCase())))
+        (!accounts.length || this.lastAccounts.every((x, i) => x.toLowerCase() === accounts[i].toLowerCase()))
       ) {
         return
       }
