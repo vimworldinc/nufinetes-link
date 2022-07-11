@@ -11,7 +11,6 @@ interface DesktopLinkProps {
 }
 
 function DesktopLink({ wcUri, text }: DesktopLinkProps) {
-  console.log(text, 'check text')
   return (
     <>
       <div
