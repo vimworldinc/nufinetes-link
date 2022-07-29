@@ -1,6 +1,6 @@
 import type WalletConnectProvider from '@walletconnect/web3-provider'
-// import { JsonRpcProvider as JrpcProvider } from '@ethersproject/providers'
 import QRCodeModal from './qrmodal'
+import DefaultModal from '@walletconnect/qrcode-modal'
 import type { IWCEthRpcConnectionOptions } from '@walletconnect/types'
 import type { Actions, ProviderRpcError, AddEthereumChainParameter } from '@web3-react/types'
 import { Connector } from '@web3-react/types'
@@ -11,7 +11,7 @@ import NufinetesWeb3Provider from './nufinetes-web3-provider'
 
 export const URI_AVAILABLE = 'URI_AVAILABLE'
 
-const VE_CHAIN_IDS = [818000000, 818000001]
+// const VE_CHAIN_IDS = [818000000, 818000001]
 
 type CustomWalletConnectProvider = WalletConnectProvider &
   EventEmitter & {
@@ -37,6 +37,7 @@ export class NufinetesConnector extends Connector {
 
   private readonly options: Omit<WalletConnectOptions, 'rpc' | 'client'>
   private readonly rpc: { [chainId: number]: string[] }
+  private useDefaultModal?: boolean
   private eagerConnection?: Promise<void>
   private treatModalCloseAsError: boolean
   private wcInstance: CustomWalletConnectProvider | undefined
@@ -46,9 +47,16 @@ export class NufinetesConnector extends Connector {
   /**
    * @param options - Options to pass to `@walletconnect/ethereum-provider`
    * @param connectEagerly - A flag indicating whether connection should be initiated when the class is constructed.
+   * @param useDefaultModal - use default wallet connect modal instead of nufinetes-modal
    * @param treatModalCloseAsError - throw an error while qrmodal closing to fix some wallet connect issues
    */
-  constructor(actions: Actions, options: WalletConnectOptions, connectEagerly = false, treatModalCloseAsError = true) {
+  constructor(
+    actions: Actions,
+    options: WalletConnectOptions,
+    connectEagerly = false,
+    useDefaultModal = false,
+    treatModalCloseAsError = true
+  ) {
     super(actions)
 
     if (connectEagerly && typeof window === 'undefined') {
@@ -61,6 +69,7 @@ export class NufinetesConnector extends Connector {
       return accumulator
     }, {})
     this.options = rest
+    this.useDefaultModal = useDefaultModal
     this.wcInstance = undefined
     this.lastChainId = -1
     this.lastAccounts = []
@@ -98,7 +107,7 @@ export class NufinetesConnector extends Connector {
     import('@walletconnect/client').then(async (m) => {
       this.wcInstance = new m.default({
         bridge: 'https://bridge.walletconnect.org',
-        qrcodeModal: QRCodeModal,
+        qrcodeModal: this.useDefaultModal ? DefaultModal : QRCodeModal,
         // ...this.options,
         // chainId,
         // rpc: await rpc,

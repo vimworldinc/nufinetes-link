@@ -1,4 +1,8 @@
-## Version 0.0.14
+## Version 0.1.5
+
+1. Add an option to show original qr code modal
+
+## Version 0.1.4
 
 1. fix a bug about account update issue
 
