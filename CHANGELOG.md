@@ -1,3 +1,7 @@
+## Version 0.1.6
+
+1. Update new style of connection modal
+
 ## Version 0.1.5
 
 1. Add an option to show original qr code modal
