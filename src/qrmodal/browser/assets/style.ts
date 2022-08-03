@@ -466,12 +466,11 @@ body {
 }
 
 .walletconnect-qrcode__text {
-  font-size: 14px;
+  font-size: 16px;
   font-family: Nunito, sans-serif;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 22px;
   color: #fff;
-  line-height: 1.1875em;
   margin: 0;
   text-align: center;
   width: 100%;
@@ -490,17 +489,18 @@ body {
 }
 
 .walletconnect-qrcode__displayWrap {
-  width: 170px;
-  height: 170px;
+  width: 243px;
+  height: 243px;
   display: flex;
   transform: translateZ(0);
-  margin-top: 20px;
   transition: all 0.2s;
   align-items: center;
   border-radius: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 17px;
+  margin-top: 17px;
   justify-content: center;
   background: #fff;
+  flex-shrink: 0;
 }
 
 .walletconnect-qrcode__image {
@@ -588,7 +588,8 @@ body {
   flex-direction: column;
   padding: 22px;
   border: 1px solid #9EA5D1;
-  width: 385px;
+  width: 384px;
+  height: 484px;
   box-sizing: border-box;
   border-radius: 16px;
   background-color: #19042d;
@@ -909,10 +910,9 @@ body {
 .walletconnect-modal__desktopLink {
   color: #fff;
   width: 302px;
-  height: 68px;
+  height: 56px;
   padding: 9px 23px 9px 9px;
   box-sizing: border-box;
-  margin-top: 20px;
   border: 1px solid rgba(255, 255, 255, 0.6) !important;
   border-radius: 16px;
   display: flex;
@@ -945,6 +945,58 @@ body {
   color: #30EDB8;
   font-size: 16px;
   margin-top: 20px;
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.walletconnect-modal__switcherWrap {
+  width: 332px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  border-radius: 12px;
+  background: #211a41;
+  margin-top: 13px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.walletconnect-modal_singleSwitcher {
+  width: 166px;
+  height: 39px;
+  border-radius: 10px;
+  color: #4E5BA6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Nunito, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  cursor: pointer;
+  z-index: 1;
+}
+.walletconnect-modal_singleSwitcher.isActive {
+  color: #fff;
+}
+.walletconnect-modal_switcherBg {
+  width: 166px;
+  height: 39px;
+  background: #7554E2;
+  border-radius: 10px;
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transition: all 0.5s;
+}
+.walletconnect-modal_switcherBg.moved {
+  transform: translateX(158px);
+}
+
+.walletconnect-modal__pcImage {
+  margin-top: 40px;
+  margin-bottom: 46px;
 }
 `

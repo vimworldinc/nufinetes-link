@@ -3,7 +3,7 @@ import * as React from 'preact/compat'
 
 import { TextMap } from '../types'
 import { NUFINETES_LOGO_SVG } from '../assets/nufinetes'
-import { WALLETCONNECT_NUFINETES_TEXT } from '../constants'
+import { PcImage } from './PcImage'
 
 interface DesktopLinkProps {
   wcUri: string
@@ -13,6 +13,9 @@ interface DesktopLinkProps {
 function DesktopLink({ wcUri, text }: DesktopLinkProps) {
   return (
     <>
+      <div className="walletconnect-modal__pcImage">
+        <PcImage />
+      </div>
       <div
         onClick={() => {
           window.location.href = `vimwallet://--/connect?uri=${wcUri}`
@@ -27,14 +30,6 @@ function DesktopLink({ wcUri, text }: DesktopLinkProps) {
           <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
         </svg>
       </div>
-      <a
-        className="walletconnect-modal_appLink"
-        href="https://www.vimworld.com/nufinetes-download"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {text.no_nufinetes}
-      </a>
     </>
   )
 }
