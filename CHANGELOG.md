@@ -1,3 +1,7 @@
+## Version 0.1.7
+
+1. Update uri to support open Nufinetes by system camera
+
 ## Version 0.1.6
 
 1. Update new style of connection modal

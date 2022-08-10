@@ -29,7 +29,7 @@ function QRCodeDisplay(props: QRCodeDisplayProps) {
 
   React.useEffect(() => {
     ;(async () => {
-      setSvg(await formatQRCodeImage(props.uri))
+      setSvg(await formatQRCodeImage(`vimwallet://--/connect?uri=${props.uri}`))
     })()
   }, [])
 
