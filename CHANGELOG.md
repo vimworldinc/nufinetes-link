@@ -1,3 +1,8 @@
+## Version 0.1.8
+
+1. Add error collection enum
+
+2. Throw errors while no rpc url provided for connecting chainId
 ## Version 0.1.7
 
 1. Update uri to support open Nufinetes by system camera

@@ -36,7 +36,7 @@ After installation, you can create a nufinetes connector for your dapp as follow
 
 ```js
 import { initializeConnector } from "@web3-react/core";
-import { NufinetesConnector } from "@vimworldinc/nufinetes-link";
+import { NufinetesConnector } from "@vimworld/nufinetes-link";
 
 export const [nufinetes, hooks] =
   initializeConnector <
@@ -119,6 +119,25 @@ const {
 - **useProvider** returns a instance of Wallet Connect.
 
 In the dapps you can freely use these states according to your business.
+
+### Error Handling
+
+there is an Enum varible called "NufinetesConnectorErrors" exported from root directory
+
+```js
+import { NufinetesConnectorErrors } from "@vimworld/nufinetes-link";
+```
+
+It contains some errors that may occoured
+
+```js
+export enum NufinetesConnectorErrors {
+  // connector will throw this error when the chain id of your linked wallet does not have a corresponding rpc address. To solve this error you should provide a rpc url while initializing the connector
+  NO_AVAIL_RPC = 'No RPC url available for this chainId',
+  // when you click to close the qr modal, this error will be throwed
+  USER_CLOSE_MODAL = 'User closed modal',
+}
+```
 
 ## Advanced Usages: Web3ReactProvider
 
