@@ -11,6 +11,10 @@ import NufinetesWeb3Provider from './nufinetes-web3-provider'
 
 export const URI_AVAILABLE = 'URI_AVAILABLE'
 
+export enum NufinetesConnectorErrors {
+  NO_AVAIL_RPC = 'No RPC url available for this chainId',
+  USER_CLOSE_MODAL = 'User closed modal',
+}
 // const VE_CHAIN_IDS = [818000000, 818000001]
 
 type CustomWalletConnectProvider = WalletConnectProvider &
@@ -121,6 +125,10 @@ export class NufinetesConnector extends Connector {
       // initialize a NufinetesWeb3Provider
       // a NufinetesWeb3Provider is a web3 provider which can also be used to operate wallet connect connection directly.
       // for example: you can directly call sendCustomRequest in a NufinetesWeb3Provider
+      if (!this.rpc[this.wcInstance.chainId]) {
+        this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
+        return
+      }
       this.provider = new NufinetesWeb3Provider(this.wcInstance as any, {
         ...this.options,
         chainId: chainId > 0 ? chainId : null,
@@ -181,7 +189,7 @@ export class NufinetesConnector extends Connector {
     this.provider = undefined
     this.customProvider = null
     this.eagerConnection = undefined
-    this.actions.reportError(new Error('User closed modal'))
+    this.actions.reportError(new Error(NufinetesConnectorErrors.USER_CLOSE_MODAL))
   }
 
   private URIListener = (_: Error | null, payload: { params: string[] }): void => {
@@ -207,6 +215,11 @@ export class NufinetesConnector extends Connector {
         const accounts = await this.wcInstance!.accounts
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.wcInstance!.chainId)
+
+        if (!this.rpc?.[chainId]) {
+          this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
+          return
+        }
 
         this.lastChainId = chainId
         this.lastAccounts = accounts
@@ -237,7 +250,9 @@ export class NufinetesConnector extends Connector {
         ? desiredChainIdOrChainParameters
         : desiredChainIdOrChainParameters?.chainId
     if (desiredChainId && this.rpc[desiredChainId] === undefined) {
-      throw new Error(`no url(s) provided for desiredChainId ${desiredChainId}`)
+      this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
+      return
+      // throw new Error(`no url(s) provided for desiredChainId ${desiredChainId}`)
     }
 
     // this early return clause catches some common cases if we're already connected
@@ -246,6 +261,10 @@ export class NufinetesConnector extends Connector {
         const accounts = await this.wcInstance!.accounts
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.wcInstance!.chainId)
+        if (!this.rpc?.[chainId]) {
+          this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
+          return
+        }
 
         return this.actions.update({ chainId, accounts })
       }
@@ -272,7 +291,10 @@ export class NufinetesConnector extends Connector {
         const accounts = await this.wcInstance!.accounts
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.wcInstance!.chainId)
-
+        if (!this.rpc?.[chainId]) {
+          this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
+          return
+        }
         if (!desiredChainId || desiredChainId === chainId) {
           return this.actions.update({ chainId, accounts })
         }
