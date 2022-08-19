@@ -125,7 +125,7 @@ export class NufinetesConnector extends Connector {
       // initialize a NufinetesWeb3Provider
       // a NufinetesWeb3Provider is a web3 provider which can also be used to operate wallet connect connection directly.
       // for example: you can directly call sendCustomRequest in a NufinetesWeb3Provider
-      if (!this.rpc[this.wcInstance.chainId]) {
+      if (this.wcInstance.chainId > 0 && !this.rpc[this.wcInstance.chainId]) {
         this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
         return
       }
