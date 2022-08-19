@@ -216,7 +216,7 @@ export class NufinetesConnector extends Connector {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.wcInstance!.chainId)
 
-        if (!this.rpc?.[chainId]) {
+        if (chainId > 0 && !this.rpc?.[chainId]) {
           this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
           return
         }
@@ -261,7 +261,7 @@ export class NufinetesConnector extends Connector {
         const accounts = await this.wcInstance!.accounts
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.wcInstance!.chainId)
-        if (!this.rpc?.[chainId]) {
+        if (chainId > 0 && !this.rpc?.[chainId]) {
           this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
           return
         }
@@ -291,7 +291,7 @@ export class NufinetesConnector extends Connector {
         const accounts = await this.wcInstance!.accounts
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const chainId = parseChainId(await this.wcInstance!.chainId)
-        if (!this.rpc?.[chainId]) {
+        if (chainId > 0 && !this.rpc?.[chainId]) {
           this.actions.reportError(new Error(NufinetesConnectorErrors.NO_AVAIL_RPC))
           return
         }
