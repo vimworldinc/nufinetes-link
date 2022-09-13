@@ -4,18 +4,26 @@ import * as React from 'preact/compat'
 import { TextMap } from '../types'
 import { NUFINETES_LOGO_SVG } from '../assets/nufinetes'
 import { PcImage } from './PcImage'
+import { MOBILE_LINK_SVG } from '../assets/mobile_image'
 
 interface DesktopLinkProps {
+  mobile?: boolean
   wcUri: string
   text: TextMap
 }
 
-function DesktopLink({ wcUri, text }: DesktopLinkProps) {
+function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
   return (
     <>
-      <div className="walletconnect-modal__pcImage">
-        <PcImage />
-      </div>
+      {mobile ? (
+        <div className="walletconnect-modal__mobileImageWrap">
+          <img src={MOBILE_LINK_SVG} className="walletconnect-modal__mobileImage" />
+        </div>
+      ) : (
+        <div className="walletconnect-modal__pcImage">
+          <PcImage />
+        </div>
+      )}
       <div
         onClick={() => {
           window.location.href = `vimwallet://--/connect?uri=${wcUri}`
