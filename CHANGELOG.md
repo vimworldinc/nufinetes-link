@@ -1,5 +1,9 @@
 ## Version 0.1.10
 
+1. Adjust modal display type on mobile devices
+
+## Version 0.1.10
+
 1. Add error collection enum
 
 2. Throw errors while no rpc url provided for connecting chainId
