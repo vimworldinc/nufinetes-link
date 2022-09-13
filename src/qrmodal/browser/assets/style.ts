@@ -476,18 +476,6 @@ body {
   width: 100%;
 }
 
-@media only screen and (max-width: 768px) {
-  .walletconnect-qrcode__text {
-    font-size: 4vw;
-  }
-}
-
-@media only screen and (max-width: 320px) {
-  .walletconnect-qrcode__text {
-    font-size: 14px;
-  }
-}
-
 .walletconnect-qrcode__displayWrap {
   width: 243px;
   height: 243px;
@@ -941,6 +929,11 @@ body {
   margin-right: 10px;
 }
 
+.walletconnect-modal__mobileImage {
+  width: 191px;
+  height: 200px;
+}
+
 .walletconnect-modal_appLink {
   color: #30EDB8;
   font-size: 16px;
@@ -993,6 +986,11 @@ body {
 }
 .walletconnect-modal_switcherBg.moved {
   transform: translateX(158px);
+}
+
+.walletconnect-modal__mobileImageWrap {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .walletconnect-modal__pcImage {

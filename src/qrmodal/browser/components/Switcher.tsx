@@ -5,12 +5,13 @@ import { TextMap } from '../types'
 export type SwitcherType = 'mobile' | 'desktop'
 
 interface SwitcherProps {
+  mobile: boolean
   curTab: SwitcherType
   setCurTab: (v: SwitcherType) => void
   text: TextMap
 }
 
-function Switcher({ curTab, setCurTab, text }: SwitcherProps) {
+function Switcher({ mobile, curTab, setCurTab, text }: SwitcherProps) {
   return (
     <div className="walletconnect-modal__switcherWrap">
       <div
@@ -23,7 +24,7 @@ function Switcher({ curTab, setCurTab, text }: SwitcherProps) {
         onClick={() => setCurTab('desktop')}
         className={`walletconnect-modal_singleSwitcher${curTab === 'desktop' ? ' isActive' : ''}`}
       >
-        Nufinetes {text.desktop}
+        Nufinetes {mobile ? text.qrcode : text.desktop}
       </div>
       <div className={`walletconnect-modal_switcherBg${curTab === 'desktop' ? ' moved' : ''}`}></div>
     </div>
