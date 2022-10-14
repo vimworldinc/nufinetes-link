@@ -1,6 +1,8 @@
-## Version 0.1.12
+## Version 0.1.14
 
 1.  Add wallet connect target deeplink to redirect Nufi-app while signing or connecting
+
+2.  While user is using iOS Chrome to browse DApp, send a param to tell Nufintes to redirect back while signing or connecting
 ## Version 0.1.11
 
 1. Adjust modal display type on mobile devices
