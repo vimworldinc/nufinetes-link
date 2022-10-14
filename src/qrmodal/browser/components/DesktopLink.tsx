@@ -14,6 +14,19 @@ interface DesktopLinkProps {
   text: TextMap
 }
 
+function getMobileBrowserScheme() {
+  if (typeof window === 'undefined') {
+    return ''
+  }
+  const ua = window.navigator.userAgent
+  var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i)
+  var webkit = !!ua.match(/WebKit/i)
+  const iOSChrome = iOS && webkit && ua.match(/CriOS/i)
+  // const iOSSafari = iOS && webkit && !ua.match(/CriOS/i)
+
+  return iOSChrome ? 'chrome' : ''
+}
+
 function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
   return (
     <>
@@ -30,10 +43,10 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
         onClick={() => {
           const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
           saveMobileLinkInfo({
-            name: 'Expo',
-            href: 'exp://192.168.2.103:19000/wc',
+            name: 'Nufinetes',
+            href: href,
           })
-          window.location.href = `exp://192.168.2.103:19000?uri=${wcUri}`
+          window.location.href = `vimwallet://--/connect?uri=${wcUri}&from_browser=${getMobileBrowserScheme()}`
         }}
         className="walletconnect-modal__desktopLink"
       >
