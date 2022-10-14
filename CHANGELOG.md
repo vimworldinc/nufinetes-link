@@ -1,5 +1,8 @@
 ## Version 0.1.11
 
+1.  Add wallet connect target deeplink to redirect Nufi-app while signing or connecting
+## Version 0.1.11
+
 1. Adjust modal display type on mobile devices
 
 ## Version 0.1.10

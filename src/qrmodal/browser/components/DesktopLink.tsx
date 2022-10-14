@@ -5,6 +5,8 @@ import { TextMap } from '../types'
 import { NUFINETES_LOGO_SVG } from '../assets/nufinetes'
 import { PcImage } from './PcImage'
 import { MOBILE_LINK_SVG } from '../assets/mobile_image'
+import { formatIOSMobile, isAndroid, saveMobileLinkInfo } from '@walletconnect/legacy-utils'
+import { IMobileRegistryEntry } from '@walletconnect/legacy-types'
 
 interface DesktopLinkProps {
   mobile?: boolean
@@ -26,6 +28,11 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
       )}
       <div
         onClick={() => {
+          const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
+          saveMobileLinkInfo({
+            name: 'Nufinetes',
+            href: href,
+          })
           window.location.href = `vimwallet://--/connect?uri=${wcUri}`
         }}
         className="walletconnect-modal__desktopLink"
