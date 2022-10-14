@@ -1,4 +1,4 @@
-## Version 0.1.11
+## Version 0.1.12
 
 1.  Add wallet connect target deeplink to redirect Nufi-app while signing or connecting
 ## Version 0.1.11

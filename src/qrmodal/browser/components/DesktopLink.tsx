@@ -30,10 +30,10 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
         onClick={() => {
           const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
           saveMobileLinkInfo({
-            name: 'Nufinetes',
-            href: href,
+            name: 'Expo',
+            href: 'exp://192.168.2.103:19000/wc',
           })
-          window.location.href = `vimwallet://--/connect?uri=${wcUri}`
+          window.location.href = `exp://192.168.2.103:19000?uri=${wcUri}`
         }}
         className="walletconnect-modal__desktopLink"
       >
