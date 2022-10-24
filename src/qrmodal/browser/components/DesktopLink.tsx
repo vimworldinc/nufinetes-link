@@ -28,6 +28,7 @@ function getMobileBrowserScheme() {
 }
 
 function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
+  const android = isAndroid()
   return (
     <>
       {mobile ? (
@@ -41,6 +42,14 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
       )}
       <div
         onClick={() => {
+          if (android) {
+            saveMobileLinkInfo({
+              name: 'Unknown',
+              href: wcUri,
+            })
+            window.open(`${wcUri}&from_browser=${getMobileBrowserScheme()}`)
+            return
+          }
           const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
           saveMobileLinkInfo({
             name: 'Nufinetes',

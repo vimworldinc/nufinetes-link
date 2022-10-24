@@ -1,3 +1,6 @@
+## Version 0.1.15
+
+1. Add android deeplink setting
 ## Version 0.1.14
 
 1.  Add wallet connect target deeplink to redirect Nufi-app while signing or connecting
