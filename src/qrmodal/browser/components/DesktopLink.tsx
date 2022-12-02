@@ -53,11 +53,14 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
             return
           }
           if (mobile) {
-            const href = formatIOSMobile(wcUri, { universalLink: NUNI_UNIVERSAL_LINK } as IMobileRegistryEntry)
-            saveMobileLinkInfo({
-              name: 'Nufinetes',
-              href: href,
-            })
+            // const href = formatIOSMobile(wcUri, { universalLink: NUNI_UNIVERSAL_LINK } as IMobileRegistryEntry)
+            // saveMobileLinkInfo({
+            //   name: 'Nufinetes',
+            //   href: href,
+            // })
+            if (typeof localStorage !== 'undefined') {
+              localStorage?.removeItem('WALLETCONNECT_DEEPLINK_CHOICE')
+            }
             const encodedUri = encodeURIComponent(wcUri)
             window.open(`${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}`)
             return
