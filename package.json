@@ -10,7 +10,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.1.16",
+  "version": "0.1.17",
   "files": [
     "dist/*"
   ],
@@ -31,8 +31,6 @@
     "copy-to-clipboard": "^3.3.1",
     "preact": "10.4.1",
     "@ethersproject/providers": "^5",
-    "@walletconnect/jsonrpc-http-connection": "1.0.0",
-    "@walletconnect/jsonrpc-provider": "1.0.3",
     "@walletconnect/web3-provider": "^1.7.8",
     "qrcode": "1.4.4"
   },

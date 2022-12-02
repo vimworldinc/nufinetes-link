@@ -27,6 +27,8 @@ function getMobileBrowserScheme() {
   return iOSChrome ? 'chrome' : ''
 }
 
+const NUNI_UNIVERSAL_LINK = 'https://apple.vimworld.org'
+
 function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
   const android = isAndroid()
   return (
@@ -48,6 +50,16 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
               href: wcUri,
             })
             window.open(`${wcUri}&from_browser=${getMobileBrowserScheme()}`)
+            return
+          }
+          if (mobile) {
+            const href = formatIOSMobile(wcUri, { universalLink: NUNI_UNIVERSAL_LINK } as IMobileRegistryEntry)
+            saveMobileLinkInfo({
+              name: 'Nufinetes',
+              href: href,
+            })
+            const encodedUri = encodeURIComponent(wcUri)
+            window.location.href = `${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}`
             return
           }
           const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
