@@ -1,3 +1,7 @@
+## Version 0.1.17
+
+1. Update universal link on iOS modal
+
 ## Version 0.1.16
 
 1. Update getBestRpc func
