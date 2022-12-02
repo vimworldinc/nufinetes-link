@@ -62,7 +62,7 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
               localStorage?.removeItem('WALLETCONNECT_DEEPLINK_CHOICE')
             }
             const encodedUri = encodeURIComponent(wcUri)
-            window.open(`${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}`)
+            window.location.href = (`${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}`)
             return
           }
           const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
