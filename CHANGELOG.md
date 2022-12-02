@@ -1,4 +1,4 @@
-## Version 0.1.18
+## Version 0.1.19
 
 1. Update universal link on iOS modal
 
