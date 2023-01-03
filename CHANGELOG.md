@@ -1,3 +1,6 @@
+## Version 0.1.21
+
+1. Use saveMobileLinkInfo in linking
 ## Version 0.1.20
 
 1. Update universal link on iOS modal
