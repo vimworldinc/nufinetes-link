@@ -31,6 +31,22 @@ const NUNI_UNIVERSAL_LINK = 'https://apple.vimworld.org'
 
 function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
   const android = isAndroid()
+  const [buttonHref, setButtonHref] = React.useState('')
+
+  React.useEffect(() => {
+    if (android) {
+      setButtonHref(`${wcUri}&from_browser=${getMobileBrowserScheme()}`)
+      return
+    }
+    if (mobile) {
+      const encodedUri = encodeURIComponent(wcUri)
+      setButtonHref(`${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}&from_browser=${getMobileBrowserScheme()}`)
+      return
+    }
+    const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
+    setButtonHref(href)
+  }, [wcUri, android, mobile])
+
   return (
     <>
       {mobile ? (
@@ -42,27 +58,27 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
           <PcImage />
         </div>
       )}
-      <div
+      <a
+        rel="noopener noreferrer"
+        target="_blank"
+        href={buttonHref}
         onClick={() => {
           if (android) {
             saveMobileLinkInfo({
               name: 'Unknown',
               href: wcUri,
             })
-            window.open(`${wcUri}&from_browser=${getMobileBrowserScheme()}`)
+            // window.open(`${wcUri}&from_browser=${getMobileBrowserScheme()}`)
             return
           }
           if (mobile) {
-            // const href = formatIOSMobile(wcUri, { universalLink: NUNI_UNIVERSAL_LINK } as IMobileRegistryEntry)
-            // saveMobileLinkInfo({
-            //   name: 'Nufinetes',
-            //   href: href,
-            // })
-            if (typeof localStorage !== 'undefined') {
-              localStorage?.removeItem('WALLETCONNECT_DEEPLINK_CHOICE')
-            }
-            const encodedUri = encodeURIComponent(wcUri)
-            window.location.href = (`${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}`)
+            const href = formatIOSMobile(wcUri, { universalLink: NUNI_UNIVERSAL_LINK } as IMobileRegistryEntry)
+            saveMobileLinkInfo({
+              name: 'Nufinetes',
+              href: href,
+            })
+            // const encodedUri = encodeURIComponent(wcUri)
+            // window.open(`${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}`)
             return
           }
           const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
@@ -81,7 +97,7 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
         <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" fill="rgba(255, 255, 255, 0.6)">
           <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
         </svg>
-      </div>
+      </a>
     </>
   )
 }
