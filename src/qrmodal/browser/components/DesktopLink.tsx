@@ -86,7 +86,7 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
             name: 'Nufinetes',
             href: href,
           })
-          window.location.href = `vimwallet://--/connect?uri=${wcUri}&from_browser=${getMobileBrowserScheme()}`
+          // window.location.href = `vimwallet://--/connect?uri=${wcUri}&from_browser=${getMobileBrowserScheme()}`
         }}
         className="walletconnect-modal__desktopLink"
       >

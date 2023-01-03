@@ -1,4 +1,4 @@
-## Version 0.1.21
+## Version 0.1.22
 
 1. Use saveMobileLinkInfo in linking
 ## Version 0.1.20
