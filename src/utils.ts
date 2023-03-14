@@ -6,9 +6,12 @@ export async function getBestUrlMap(
   rpcMap: Record<string, string | string[]>,
   timeout: number
 ): Promise<{ [chainId: string]: string }> {
-  return Object.fromEntries(
-    await Promise.all(Object.entries(rpcMap).map(async ([chainId, map]) => [chainId, await getBestUrl(map, timeout)]))
-  )
+  const entries = await Promise.all(Object.entries(rpcMap).map(async ([chainId, map]) => [chainId, await getBestUrl(map, timeout)]))
+  let obj: Record<string, string> = {};
+  for (let [key, value] of entries) {
+    obj[key] = value;
+  }
+  return obj
 }
 
 /**
