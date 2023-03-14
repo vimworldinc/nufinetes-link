@@ -1,3 +1,8 @@
+## Version 0.2
+
+1. Upgrade Wallet Connect to V2 version
+2. Upgrade web3-react version
+
 ## Version 0.1.22
 
 1. Use saveMobileLinkInfo in linking
