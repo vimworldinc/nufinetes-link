@@ -10,7 +10,6 @@
     "declaration": true,
     "moduleResolution": "Node",
     "outDir": "dist",
-    "lib": ["es2019"],
     "jsx": "react"
   },
   "exclude": ["**/*.spec.ts"],
