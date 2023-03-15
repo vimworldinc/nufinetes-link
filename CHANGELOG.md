@@ -1,3 +1,6 @@
+## Version 0.2.1
+
+1. use @walletconnect/utils@2.4.7
 ## Version 0.2
 
 1. Upgrade Wallet Connect to V2 version
