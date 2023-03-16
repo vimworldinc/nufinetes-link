@@ -43,7 +43,7 @@ export interface WalletConnectConstructorArgs {
   onError?: (error: Error) => void
 }
 
-export class WalletConnect extends Connector {
+export class NufinetesConnector extends Connector {
   /** {@inheritdoc Connector.provider} */
   public provider?: WalletConnectProvider
   public readonly events = new EventEmitter3()

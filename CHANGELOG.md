@@ -1,3 +1,7 @@
+## Version 0.2.2
+
+1. update connector name
+
 ## Version 0.2.1
 
 1. use @walletconnect/utils@2.4.7
