@@ -1,3 +1,7 @@
+## Version 0.2.3
+
+1. export both v1 and v2 connectors for dapp usage
+
 ## Version 0.2.2
 
 1. update connector name
