@@ -277,11 +277,9 @@ export class EthereumProvider implements IEthereumProvider {
     args: RequestArguments,
     callback: (error: Error | null, response: any) => void
   ): void {
-    console.log(this.signer, "check singer");
     this.signer.sendAsync(
       args,
       (error, response) => {
-        console.log(error, response);
         callback(error, { result: response });
       },
       this.formatChainId(this.chainId)
