@@ -1,3 +1,7 @@
+## Version 0.2.4
+
+1. fix desktop link issue
+
 ## Version 0.2.3
 
 1. export both v1 and v2 connectors for dapp usage
