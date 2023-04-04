@@ -60,7 +60,7 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
       )}
       <a
         rel="noopener noreferrer"
-        target="_blank"
+        target={mobile ? "_blank" : "_self"}
         href={buttonHref}
         onClick={() => {
           if (android) {
@@ -86,7 +86,7 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
             name: 'Nufinetes',
             href: href,
           })
-          // window.location.href = `vimwallet://--/connect?uri=${wcUri}&from_browser=${getMobileBrowserScheme()}`
+          window.location.href = `vimwallet://--/connect?uri=${wcUri}}`
         }}
         className="walletconnect-modal__desktopLink"
       >
