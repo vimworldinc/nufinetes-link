@@ -1,3 +1,7 @@
+## Version 0.2.5
+
+1. update walletconnect v2 libs to newest
+
 ## Version 0.2.4
 
 1. fix desktop link issue
