@@ -97,6 +97,7 @@ export class NufinetesConnector extends Connector {
     return (this.eagerConnection = import('./ethereum-provider').then(async (ethProviderModule) => {
       const provider = (this.provider = await ethProviderModule.default.init({
         ...this.options,
+        projectId: 'ed98a11e0a376aa9edcd2a2b53aeb8ea',
         chains,
         rpcMap: await rpcMap,
       }))
