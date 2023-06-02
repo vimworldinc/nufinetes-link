@@ -1,4 +1,4 @@
-## Version 0.2.5
+## Version 0.2.6
 
 1. update walletconnect v2 libs to newest
 
