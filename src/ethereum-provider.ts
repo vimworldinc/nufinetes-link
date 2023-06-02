@@ -1,7 +1,6 @@
 import { EventEmitter } from "events";
 import {
   getAccountsFromNamespaces,
-  getChainsFromAccounts,
   getSdkError,
   isValidArray,
 } from "@walletconnect/utils";
