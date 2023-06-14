@@ -41,6 +41,7 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
     if (mobile) {
       const encodedUri = encodeURIComponent(wcUri)
       setButtonHref(`${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}&from_browser=${getMobileBrowserScheme()}`)
+      localStorage?.removeItem('WALLETCONNECT_DEEPLINK_CHOICE')
       return
     }
     const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)
@@ -72,13 +73,7 @@ function DesktopLink({ mobile, wcUri, text }: DesktopLinkProps) {
             return
           }
           if (mobile) {
-            const href = formatIOSMobile(wcUri, { universalLink: NUNI_UNIVERSAL_LINK } as IMobileRegistryEntry)
-            saveMobileLinkInfo({
-              name: 'Nufinetes',
-              href: href,
-            })
-            // const encodedUri = encodeURIComponent(wcUri)
-            // window.open(`${NUNI_UNIVERSAL_LINK}/wc?uri=${encodedUri}`)
+            localStorage?.removeItem('WALLETCONNECT_DEEPLINK_CHOICE')
             return
           }
           const href = formatIOSMobile(wcUri, { deepLink: 'vimwallet:' } as IMobileRegistryEntry)

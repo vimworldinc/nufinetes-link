@@ -1,3 +1,6 @@
+## Version 0.2.9
+
+1. optimize desktop redirect
 ## Version 0.2.8
 
 1. update walletconnect v2 libs to newest
