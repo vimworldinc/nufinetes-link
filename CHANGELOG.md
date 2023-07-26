@@ -1,5 +1,11 @@
 ## Version 0.2.9
 
+1. remove legacy connectors
+2. update wc2 sdk version
+3. adjust custom ethereum provider as newest wc2 version
+
+## Version 0.2.9
+
 1. optimize desktop redirect
 ## Version 0.2.8
 
