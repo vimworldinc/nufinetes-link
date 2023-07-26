@@ -52,6 +52,7 @@ export class NufinetesConnector extends Connector {
 
   private readonly rpcMap?: Record<number, string | string[]>
   private readonly chains: number[]
+  private readonly optionalChains: number[]
   private readonly defaultChainId?: number
   private readonly timeout: number
 
@@ -60,10 +61,11 @@ export class NufinetesConnector extends Connector {
   constructor({ actions, options, defaultChainId, timeout = DEFAULT_TIMEOUT, onError }: WalletConnectConstructorArgs) {
     super(actions, onError)
 
-    const { rpcMap, rpc, chains, ...rest } = options
+    const { rpcMap, rpc, chains, optionalChains, ...rest } = options
 
     this.options = rest
-    this.chains = chains
+    this.chains = chains!
+    this.optionalChains = optionalChains!
     this.defaultChainId = defaultChainId
     this.rpcMap = rpcMap || rpc
     this.timeout = timeout
@@ -93,10 +95,12 @@ export class NufinetesConnector extends Connector {
 
     const rpcMap = this.rpcMap ? getBestUrlMap(this.rpcMap, this.timeout) : undefined
     const chains = desiredChainId ? getChainsWithDefault(this.chains, desiredChainId) : this.chains
+    const optionalChains = this.optionalChains
 
     return (this.eagerConnection = import('./ethereum-provider').then(async (ethProviderModule) => {
       const provider = (this.provider = await ethProviderModule.default.init({
         ...this.options,
+        optionalChains,
         projectId: 'ed98a11e0a376aa9edcd2a2b53aeb8ea',
         chains,
         rpcMap: await rpcMap,
