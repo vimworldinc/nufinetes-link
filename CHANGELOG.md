@@ -1,4 +1,4 @@
-## Version 0.2.9
+## Version 0.2.10
 
 1. remove legacy connectors
 2. update wc2 sdk version
